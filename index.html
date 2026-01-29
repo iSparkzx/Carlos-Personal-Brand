@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carlos Mitchell — I Build Systems That Replace Busywork</title>
+    <title>Carlos Mitchell — Automation Architect</title>
     <meta name="description" content="16 years in the trenches. Now I help businesses eliminate manual chaos with intelligent automation.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after {
             margin: 0;
@@ -16,71 +16,70 @@
         }
 
         :root {
-            --bg: #050505;
-            --bg-card: #0d0d0d;
-            --bg-elevated: #151515;
+            --bg: #000000;
+            --bg-card: #0a0a0a;
+            --bg-elevated: #111111;
             --text: #ffffff;
-            --text-secondary: #8a8a8a;
-            --text-muted: #4a4a4a;
-            --border: #1f1f1f;
-            --accent: #00ff88;
-            --accent-dim: rgba(0, 255, 136, 0.1);
+            --text-secondary: #888888;
+            --text-muted: #444444;
+            --border: #1a1a1a;
+            --glow: #00d4aa;
+            --glow-dim: rgba(0, 212, 170, 0.1);
         }
 
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Animated Background Canvas */
-        #bgCanvas {
+        /* 3D Wave Canvas */
+        #waveCanvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.4;
         }
 
-        /* Floating Nav */
+        /* Floating Pill Nav */
         nav {
             position: fixed;
-            top: 24px;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 100;
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 8px 8px 24px;
-            background: rgba(13, 13, 13, 0.8);
+            padding: 10px 12px 10px 28px;
+            background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border);
             border-radius: 100px;
         }
 
         .nav-brand {
-            font-weight: 700;
-            font-size: 0.9375rem;
+            font-weight: 600;
+            font-size: 0.875rem;
             color: var(--text);
             text-decoration: none;
-            margin-right: 24px;
+            letter-spacing: -0.01em;
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 28px;
+            margin: 0 24px;
         }
 
         .nav-links a {
             font-size: 0.875rem;
-            font-weight: 500;
             color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.3s;
@@ -89,7 +88,7 @@
         .nav-links a:hover { color: var(--text); }
 
         .nav-cta {
-            padding: 10px 24px;
+            padding: 10px 22px;
             background: var(--text);
             color: var(--bg);
             font-size: 0.875rem;
@@ -100,8 +99,8 @@
         }
 
         .nav-cta:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255,255,255,0.2);
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(255,255,255,0.15);
         }
 
         /* Hero */
@@ -112,7 +111,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 140px 24px 80px;
+            padding: 120px 24px 80px;
             position: relative;
             z-index: 1;
         }
@@ -120,267 +119,232 @@
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 16px 8px 12px;
-            background: var(--accent-dim);
-            border: 1px solid rgba(0, 255, 136, 0.2);
+            gap: 10px;
+            padding: 10px 18px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
             border-radius: 100px;
             font-size: 0.8125rem;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 32px;
-            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease forwards;
             opacity: 0;
         }
 
-        .hero-badge-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.4); }
-            50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(0, 255, 136, 0); }
+        .hero-badge svg {
+            width: 14px;
+            height: 14px;
+            color: var(--glow);
         }
 
         .hero-title {
-            font-size: clamp(2.75rem, 7vw, 5rem);
-            font-weight: 800;
-            line-height: 1.05;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 500;
+            font-style: italic;
+            line-height: 1;
             letter-spacing: -0.03em;
-            max-width: 900px;
-            margin-bottom: 24px;
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+            max-width: 1000px;
+            margin-bottom: 32px;
+            animation: fadeInUp 1s ease 0.15s forwards;
             opacity: 0;
         }
 
-        .hero-title-accent {
-            background: linear-gradient(135deg, var(--accent), #00ccff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .hero-title-fade {
+            opacity: 0.5;
         }
 
         .hero-description {
-            font-size: 1.125rem;
-            font-weight: 400;
+            font-size: 1.0625rem;
             color: var(--text-secondary);
-            max-width: 580px;
+            max-width: 560px;
             line-height: 1.8;
-            margin-bottom: 40px;
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+            margin-bottom: 48px;
+            animation: fadeInUp 1s ease 0.3s forwards;
             opacity: 0;
         }
 
         .hero-cta {
-            display: flex;
-            gap: 16px;
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            animation: fadeInUp 1s ease 0.45s forwards;
             opacity: 0;
         }
 
-        .btn {
+        .btn-hero {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 16px 32px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            gap: 12px;
+            padding: 18px 36px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text);
             font-size: 0.9375rem;
-            font-weight: 600;
-            border-radius: 12px;
+            font-weight: 500;
+            border-radius: 100px;
             text-decoration: none;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
-            border: none;
         }
 
-        .btn-primary {
-            background: var(--text);
-            color: var(--bg);
-        }
-
-        .btn-primary:hover {
+        .btn-hero:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--text-muted);
             transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(255,255,255,0.15);
+            box-shadow: 0 20px 40px rgba(0,212,170,0.1);
         }
 
-        .btn-ghost {
-            background: transparent;
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-
-        .btn-ghost:hover {
-            border-color: var(--text-secondary);
-            background: var(--bg-card);
-        }
-
-        .btn svg {
+        .btn-hero svg {
             width: 16px;
             height: 16px;
             transition: transform 0.3s;
         }
 
-        .btn:hover svg { transform: translateX(4px); }
+        .btn-hero:hover svg { transform: translateX(4px); }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Stats */
-        .stats {
+        /* Bento Grid */
+        .bento {
             position: relative;
             z-index: 1;
-            padding: 80px 24px;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            padding: 0 24px 120px;
         }
 
-        .stats-grid {
-            max-width: 1000px;
+        .bento-grid {
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 48px;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto;
+            gap: 16px;
         }
 
-        .stat {
-            text-align: center;
+        .bento-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .stat-value {
-            font-size: 3.5rem;
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            background: linear-gradient(180deg, var(--text), var(--text-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .bento-card:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-4px);
         }
 
-        .stat-label {
-            font-size: 0.8125rem;
+        .bento-card.featured {
+            grid-column: span 2;
+            background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+        }
+
+        .bento-card.stat-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .bento-eyebrow {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--glow);
+            margin-bottom: 16px;
+        }
+
+        .bento-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
             font-weight: 500;
+            font-style: italic;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .bento-text {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .bento-stat {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .bento-stat-label {
+            font-size: 0.8125rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-top: 4px;
+            letter-spacing: 0.1em;
+        }
+
+        .bento-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .bento-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--text);
         }
 
         /* Problem Section */
         .problem {
             position: relative;
             z-index: 1;
-            padding: 120px 24px;
+            padding: 80px 24px 120px;
         }
 
         .problem-inner {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-        }
-
-        .section-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 20px;
-        }
-
-        .section-eyebrow::before {
-            content: '';
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 3px;
+            text-align: center;
         }
 
         .problem-title {
-            font-size: 2.25rem;
-            font-weight: 700;
-            line-height: 1.25;
-            letter-spacing: -0.02em;
-            margin-bottom: 24px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 500;
+            font-style: italic;
+            line-height: 1.2;
+            margin-bottom: 32px;
         }
 
         .problem-text {
-            font-size: 1rem;
+            font-size: 1.0625rem;
             color: var(--text-secondary);
-            line-height: 1.9;
+            line-height: 2;
             margin-bottom: 20px;
         }
 
         .problem-text strong {
             color: var(--text);
-            font-weight: 600;
-        }
-
-        .solution-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .solution-card {
-            display: flex;
-            gap: 16px;
-            padding: 24px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .solution-card:hover {
-            border-color: var(--accent);
-            transform: translateX(8px);
-            box-shadow: 0 0 40px var(--accent-dim);
-        }
-
-        .solution-num {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--accent);
-            padding: 6px 10px;
-            background: var(--accent-dim);
-            border-radius: 6px;
-            height: fit-content;
-        }
-
-        .solution-content h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .solution-content p {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
+            font-weight: 500;
         }
 
         /* Services */
         .services {
             position: relative;
             z-index: 1;
-            padding: 120px 24px;
-            background: var(--bg-card);
+            padding: 80px 24px 120px;
         }
 
         .services-inner {
@@ -389,119 +353,79 @@
         }
 
         .services-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+            text-align: center;
             margin-bottom: 64px;
         }
 
         .services-title {
-            font-size: 2.75rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            max-width: 500px;
-            line-height: 1.15;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 500;
+            font-style: italic;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .service-card {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 36px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            background: var(--border);
+            border-radius: 24px;
             overflow: hidden;
         }
 
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent), transparent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s;
+        .service-item {
+            background: var(--bg-card);
+            padding: 40px 32px;
+            transition: background 0.3s;
         }
 
-        .service-card:hover {
-            border-color: var(--text-muted);
-            transform: translateY(-8px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-        }
-
-        .service-card:hover::before { transform: scaleX(1); }
-
-        .service-icon {
-            width: 56px;
-            height: 56px;
+        .service-item:hover {
             background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 28px;
         }
 
-        .service-icon svg {
-            width: 28px;
-            height: 28px;
-            color: var(--accent);
+        .service-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-bottom: 24px;
         }
 
-        .service-title {
-            font-size: 1.375rem;
-            font-weight: 700;
+        .service-name {
+            font-size: 1.125rem;
+            font-weight: 600;
             margin-bottom: 12px;
         }
 
         .service-desc {
-            font-size: 0.9375rem;
+            font-size: 0.875rem;
             color: var(--text-secondary);
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
         /* CTA */
         .cta {
             position: relative;
             z-index: 1;
-            padding: 160px 24px;
+            padding: 120px 24px;
             text-align: center;
         }
 
-        .cta-inner {
-            max-width: 650px;
-            margin: 0 auto;
-        }
-
         .cta-title {
-            font-size: clamp(2.25rem, 5vw, 3.5rem);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 20px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 500;
+            font-style: italic;
             line-height: 1.1;
+            margin-bottom: 24px;
         }
 
         .cta-text {
             font-size: 1.0625rem;
             color: var(--text-secondary);
-            margin-bottom: 40px;
+            max-width: 500px;
+            margin: 0 auto 48px;
             line-height: 1.8;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
         }
 
         /* Footer */
@@ -541,31 +465,27 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            nav { padding: 8px 16px 8px 20px; }
             .nav-links { display: none; }
-            .nav-brand { margin-right: 16px; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-            .problem-inner { grid-template-columns: 1fr; gap: 64px; }
-            .services-grid { grid-template-columns: 1fr; }
-            .services-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-card.featured { grid-column: span 1; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 640px) {
-            .stats-grid { grid-template-columns: 1fr; }
-            .hero-cta, .cta-buttons { flex-direction: column; width: 100%; max-width: 320px; }
-            .btn { width: 100%; justify-content: center; }
-            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+            nav { padding: 8px 8px 8px 20px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 16px; }
         }
     </style>
 </head>
 <body>
-    <canvas id="bgCanvas"></canvas>
+    <canvas id="waveCanvas"></canvas>
 
     <nav>
         <a href="#" class="nav-brand">Carlos Mitchell</a>
         <div class="nav-links">
-            <a href="#approach">Approach</a>
             <a href="#services">Services</a>
+            <a href="#approach">Approach</a>
             <a href="#contact">Contact</a>
         </div>
         <a href="mailto:carlos@flowgrammatic.com" class="nav-cta">Get Started</a>
@@ -573,96 +493,75 @@
 
     <section class="hero">
         <div class="hero-badge">
-            <span class="hero-badge-dot"></span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+            </svg>
             Available for Projects
         </div>
         <h1 class="hero-title">
-            Your Business Runs on <span class="hero-title-accent">Duct Tape</span> and Spreadsheets. I Fix That.
+            Your Business Runs on<br>
+            <span class="hero-title-fade">Duct Tape & Spreadsheets</span>
         </h1>
         <p class="hero-description">
-            16 years in the trenches—running marketing, scaling ecommerce, drowning in the same operational chaos you're facing now. I learned to build systems that actually work.
+            16 years in the trenches—running marketing, scaling ecommerce, drowning in the same operational chaos you're facing now. I build systems that actually work.
         </p>
         <div class="hero-cta">
-            <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">
-                Start a Project
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <a href="mailto:carlos@flowgrammatic.com" class="btn-hero">
+                Let's Fix That
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
             </a>
-            <a href="https://isparkzx.github.io/flowgrammatic/" class="btn btn-ghost" target="_blank">
-                View FlowGrammatic
-            </a>
         </div>
     </section>
 
-    <section class="stats">
-        <div class="stats-grid">
-            <div class="stat">
-                <div class="stat-value">16+</div>
-                <div class="stat-label">Years Experience</div>
+    <section class="bento">
+        <div class="bento-grid">
+            <div class="bento-card featured">
+                <div class="bento-eyebrow">The Problem</div>
+                <h2 class="bento-title">You're Not Scaling. You're Just Hiring More People to Do Broken Processes Faster.</h2>
+                <p class="bento-text">Every new customer means more manual data entry. More email forwarding. Your team spends 60% of their time on tasks a machine should handle.</p>
             </div>
-            <div class="stat">
-                <div class="stat-value">73%</div>
-                <div class="stat-label">Avg Cost Cut</div>
+            <div class="bento-card stat-card">
+                <div class="bento-eyebrow">Experience</div>
+                <div>
+                    <div class="bento-stat">16+</div>
+                    <div class="bento-stat-label">Years in Operations</div>
+                </div>
             </div>
-            <div class="stat">
-                <div class="stat-value">10×</div>
-                <div class="stat-label">Faster Ops</div>
+            <div class="bento-card">
+                <div class="bento-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                    </svg>
+                </div>
+                <h3 class="bento-title">Workflow Automation</h3>
+                <p class="bento-text">Lead routing, order processing, customer onboarding—any process that follows rules becomes a machine.</p>
             </div>
-            <div class="stat">
-                <div class="stat-value">0</div>
-                <div class="stat-label">Babysitting</div>
+            <div class="bento-card stat-card">
+                <div class="bento-eyebrow">Results</div>
+                <div>
+                    <div class="bento-stat">73%</div>
+                    <div class="bento-stat-label">Avg Cost Reduction</div>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <section class="problem" id="approach">
-        <div class="problem-inner">
-            <div>
-                <div class="section-eyebrow">The Problem</div>
-                <h2 class="problem-title">You're Not Scaling. You're Hiring More People to Do Broken Processes Faster.</h2>
-                <p class="problem-text">
-                    Every new customer means more manual data entry. More email forwarding. More "let me check on that and get back to you." Your team spends 60% of their time on tasks a machine should handle.
-                </p>
-                <p class="problem-text">
-                    You've tried Zapier. Maybe a VA. Maybe three. The workflows break. Nobody knows how they work. And you're still the bottleneck.
-                </p>
-                <p class="problem-text">
-                    <strong>I've been there.</strong> Director of Ecommerce at a company processing thousands of orders daily. I built the systems that got us out of that chaos.
-                </p>
+            <div class="bento-card">
+                <div class="bento-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                    </svg>
+                </div>
+                <h3 class="bento-title">AI Integration</h3>
+                <p class="bento-text">Customer support that resolves issues. Data that categorizes automatically. Intelligence where it creates leverage.</p>
             </div>
-            <div>
-                <div class="section-eyebrow">The Fix</div>
-                <ul class="solution-list">
-                    <li class="solution-card">
-                        <span class="solution-num">01</span>
-                        <div class="solution-content">
-                            <h3>Audit the Chaos</h3>
-                            <p>I map every process, every handoff, every "we've always done it this way." You'll see exactly where the hours go.</p>
-                        </div>
-                    </li>
-                    <li class="solution-card">
-                        <span class="solution-num">02</span>
-                        <div class="solution-content">
-                            <h3>Design the System</h3>
-                            <p>Not a band-aid. A real architecture—built on n8n, Make, or custom solutions—that handles exceptions and scales.</p>
-                        </div>
-                    </li>
-                    <li class="solution-card">
-                        <span class="solution-num">03</span>
-                        <div class="solution-content">
-                            <h3>Build It Right</h3>
-                            <p>Every workflow documented. Every edge case handled. Your team trained. No black boxes that break when I leave.</p>
-                        </div>
-                    </li>
-                    <li class="solution-card">
-                        <span class="solution-num">04</span>
-                        <div class="solution-content">
-                            <h3>Add Intelligence</h3>
-                            <p>AI for classification, routing, personalization. Not gimmicks—practical automation that makes decisions.</p>
-                        </div>
-                    </li>
-                </ul>
+            <div class="bento-card">
+                <div class="bento-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
+                    </svg>
+                </div>
+                <h3 class="bento-title">Data Systems</h3>
+                <p class="bento-text">Systems that sync across channels. Customer data unified. Reports that generate themselves.</p>
             </div>
         </div>
     </section>
@@ -670,64 +569,44 @@
     <section class="services" id="services">
         <div class="services-inner">
             <div class="services-header">
-                <h2 class="services-title">Systems I Build</h2>
-                <a href="mailto:carlos@flowgrammatic.com" class="btn btn-ghost">
-                    Discuss Your Project
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
-                </a>
+                <h2 class="services-title">How I Work</h2>
             </div>
             <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                        </svg>
-                    </div>
-                    <h3 class="service-title">Workflow Automation</h3>
-                    <p class="service-desc">Lead routing, order processing, invoice generation, customer onboarding—any process that follows rules becomes a machine that runs itself.</p>
+                <div class="service-item">
+                    <div class="service-num">01</div>
+                    <h3 class="service-name">Audit</h3>
+                    <p class="service-desc">I map every process, every handoff, every bottleneck. You'll see exactly where the hours go.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-                        </svg>
-                    </div>
-                    <h3 class="service-title">AI-Powered Operations</h3>
-                    <p class="service-desc">Customer support that resolves issues. Content that writes itself. Data that categorizes automatically. Intelligence where it creates leverage.</p>
+                <div class="service-item">
+                    <div class="service-num">02</div>
+                    <h3 class="service-name">Design</h3>
+                    <p class="service-desc">Not a band-aid. A real architecture—built on n8n, Make, or custom solutions—that scales.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
-                        </svg>
-                    </div>
-                    <h3 class="service-title">Data Infrastructure</h3>
-                    <p class="service-desc">Systems that sync across channels. Customer data unified in one place. Reports that generate themselves. Your single source of truth.</p>
+                <div class="service-item">
+                    <div class="service-num">03</div>
+                    <h3 class="service-name">Build</h3>
+                    <p class="service-desc">Every workflow documented. Every edge case handled. No black boxes that break when I leave.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-num">04</div>
+                    <h3 class="service-name">Optimize</h3>
+                    <p class="service-desc">AI for classification, routing, personalization. Practical automation that makes decisions.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="cta" id="contact">
-        <div class="cta-inner">
-            <h2 class="cta-title">Stop Patching.<br>Start Building Systems.</h2>
-            <p class="cta-text">
-                A 30-minute call to understand what's broken. If I can help, I'll tell you exactly how. If I can't, I'll tell you that too.
-            </p>
-            <div class="cta-buttons">
-                <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">
-                    Book a Call
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/carlosmitchell/" class="btn btn-ghost" target="_blank">
-                    Connect on LinkedIn
-                </a>
-            </div>
-        </div>
+        <h2 class="cta-title">Stop Patching.<br>Start Building Systems.</h2>
+        <p class="cta-text">
+            A 30-minute call to understand what's broken. If I can help, I'll tell you how. If I can't, I'll tell you that too.
+        </p>
+        <a href="mailto:carlos@flowgrammatic.com" class="btn-hero">
+            Book a Call
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+        </a>
     </section>
 
     <footer>
@@ -742,70 +621,69 @@
     </footer>
 
     <script>
-        // Animated diagonal lines background
-        const canvas = document.getElementById('bgCanvas');
+        // 3D Wave Particle Background
+        const canvas = document.getElementById('waveCanvas');
         const ctx = canvas.getContext('2d');
 
         let width, height;
-        const lines = [];
-        const lineCount = 50;
+        let cols, rows;
+        const spacing = 25;
+        let time = 0;
 
         function resize() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
+            cols = Math.ceil(width / spacing) + 10;
+            rows = Math.ceil(height / spacing) + 10;
         }
 
-        function createLine() {
-            return {
-                x: Math.random() * width * 1.5,
-                y: -100,
-                length: 100 + Math.random() * 200,
-                speed: 2 + Math.random() * 4,
-                opacity: 0.1 + Math.random() * 0.3,
-                thickness: 1 + Math.random() * 1.5
-            };
-        }
+        function draw() {
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, width, height);
 
-        function init() {
-            resize();
-            for (let i = 0; i < lineCount; i++) {
-                const line = createLine();
-                line.y = Math.random() * height;
-                line.x = Math.random() * width * 1.5 - width * 0.25;
-                lines.push(line);
-            }
-        }
+            const centerX = width / 2;
+            const centerY = height * 0.6;
 
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < cols; i++) {
+                for (let j = 0; j < rows; j++) {
+                    const x = i * spacing - (cols * spacing - width) / 2;
+                    const y = j * spacing - (rows * spacing - height) / 2;
 
-            lines.forEach((line, i) => {
-                // Draw diagonal line
-                ctx.beginPath();
-                ctx.moveTo(line.x, line.y);
-                ctx.lineTo(line.x - line.length * 0.7, line.y + line.length);
-                ctx.strokeStyle = `rgba(255, 255, 255, ${line.opacity})`;
-                ctx.lineWidth = line.thickness;
-                ctx.lineCap = 'round';
-                ctx.stroke();
+                    // Distance from center
+                    const dx = x - centerX;
+                    const dy = y - centerY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
 
-                // Move line
-                line.x -= line.speed * 0.7;
-                line.y += line.speed;
+                    // Wave displacement
+                    const wave = Math.sin(dist * 0.008 - time * 0.8) * 30;
+                    const wave2 = Math.cos(dist * 0.006 + time * 0.5) * 20;
 
-                // Reset if off screen
-                if (line.y > height + line.length || line.x < -line.length) {
-                    lines[i] = createLine();
-                    lines[i].x = width + Math.random() * 200;
+                    // 3D perspective
+                    const perspective = 1 + (y - height / 2) * 0.001;
+                    const projX = x;
+                    const projY = y + (wave + wave2) * perspective;
+
+                    // Opacity based on distance from center
+                    const maxDist = Math.sqrt(width * width + height * height) / 2;
+                    const opacity = Math.max(0.05, 0.4 - (dist / maxDist) * 0.5);
+
+                    // Size variation
+                    const size = 1.5 + wave * 0.02;
+
+                    ctx.beginPath();
+                    ctx.arc(projX, projY, Math.max(0.5, size), 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+                    ctx.fill();
                 }
-            });
+            }
 
-            requestAnimationFrame(animate);
+            time += 0.016;
+            requestAnimationFrame(draw);
         }
 
         window.addEventListener('resize', resize);
-        init();
-        animate();
+        resize();
+        draw();
 
         // Scroll animations
         const observer = new IntersectionObserver((entries) => {
@@ -815,12 +693,12 @@
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, { threshold: 0.1, rootMargin: '-50px' });
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.stat, .service-card, .solution-card').forEach((el, i) => {
+        document.querySelectorAll('.bento-card, .service-item').forEach((el, i) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
-            el.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.1}s`;
+            el.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.08}s`;
             observer.observe(el);
         });
     </script>
