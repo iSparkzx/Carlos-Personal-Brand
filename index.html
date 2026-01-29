@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         *, *::before, *::after {
             margin: 0;
@@ -24,7 +25,6 @@
             --text-muted: #444444;
             --border: #1a1a1a;
             --glow: #00d4aa;
-            --glow-dim: rgba(0, 212, 170, 0.1);
         }
 
         html { scroll-behavior: smooth; }
@@ -37,7 +37,7 @@
             overflow-x: hidden;
         }
 
-        #waveCanvas {
+        #bg-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -68,7 +68,6 @@
             font-size: 0.875rem;
             color: var(--text);
             text-decoration: none;
-            letter-spacing: -0.01em;
         }
 
         .nav-links {
@@ -94,7 +93,7 @@
             font-weight: 600;
             border-radius: 100px;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s;
         }
 
         .nav-cta:hover {
@@ -150,9 +149,7 @@
             opacity: 0;
         }
 
-        .hero-title-fade {
-            opacity: 0.5;
-        }
+        .hero-title-fade { opacity: 0.5; }
 
         .hero-description {
             font-size: 1.0625rem;
@@ -199,10 +196,7 @@
 
         .btn-hero:hover svg { transform: translateX(4px); }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
+        @keyframes fadeIn { to { opacity: 1; } }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
@@ -220,7 +214,6 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: auto auto;
             gap: 16px;
         }
 
@@ -239,7 +232,6 @@
 
         .bento-card.featured {
             grid-column: span 2;
-            background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
         }
 
         .bento-card.stat-card {
@@ -344,9 +336,7 @@
             transition: background 0.3s;
         }
 
-        .service-item:hover {
-            background: var(--bg-elevated);
-        }
+        .service-item:hover { background: var(--bg-elevated); }
 
         .service-num {
             font-family: 'Cormorant Garamond', serif;
@@ -443,7 +433,7 @@
     </style>
 </head>
 <body>
-    <canvas id="waveCanvas"></canvas>
+    <div id="bg-canvas"></div>
 
     <nav>
         <a href="#" class="nav-brand">Carlos Mitchell</a>
@@ -585,145 +575,155 @@
     </footer>
 
     <script>
-        // Finex-style 3D Wave Grid Animation
-        const canvas = document.getElementById('waveCanvas');
-        const ctx = canvas.getContext('2d');
-
-        let width, height;
+        // Three.js Finex-style 3D Wave Grid
+        let scene, camera, renderer, particles, geometry;
         let mouseX = 0, mouseY = 0;
         let time = 0;
 
-        // Grid settings
-        const gridSize = 30;
-        const dotSize = 1.5;
-        const perspective = 400;
-        const rotationX = 60 * Math.PI / 180; // Tilt angle
-        const rotationZ = -45 * Math.PI / 180; // Rotation angle
+        const container = document.getElementById('bg-canvas');
+        const PARTICLE_COUNT = 15000;
+        const GRID_SIZE = 120;
+        const SEPARATION = 3;
 
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
+        function init() {
+            // Scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x000000);
 
-        function project3D(x, y, z) {
-            // Rotate around Z axis
-            let cosZ = Math.cos(rotationZ);
-            let sinZ = Math.sin(rotationZ);
-            let xz = x * cosZ - y * sinZ;
-            let yz = x * sinZ + y * cosZ;
+            // Camera
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 5000);
+            camera.position.z = 150;
+            camera.position.y = 80;
+            camera.lookAt(0, 0, 0);
 
-            // Rotate around X axis
-            let cosX = Math.cos(rotationX);
-            let sinX = Math.sin(rotationX);
-            let yRot = yz * cosX - z * sinX;
-            let zRot = yz * sinX + z * cosX;
+            // Particles
+            const positions = new Float32Array(PARTICLE_COUNT * 3);
+            const opacities = new Float32Array(PARTICLE_COUNT);
+            const sizes = new Float32Array(PARTICLE_COUNT);
 
-            // Apply perspective
-            let scale = perspective / (perspective + zRot);
-            
-            return {
-                x: xz * scale + width / 2,
-                y: yRot * scale + height / 2,
-                scale: scale,
-                z: zRot
-            };
-        }
-
-        function draw() {
-            ctx.fillStyle = '#000000';
-            ctx.fillRect(0, 0, width, height);
-
-            const cols = Math.ceil(width / gridSize) + 20;
-            const rows = Math.ceil(height / gridSize) + 20;
-            const offsetX = (cols * gridSize) / 2;
-            const offsetY = (rows * gridSize) / 2;
-
-            // Store points for depth sorting
-            const points = [];
-
-            for (let i = 0; i < cols; i++) {
-                for (let j = 0; j < rows; j++) {
-                    const x = i * gridSize - offsetX;
-                    const y = j * gridSize - offsetY;
-
-                    // Create wave effect
-                    const distFromCenter = Math.sqrt(x * x + y * y);
-                    const wave1 = Math.sin(distFromCenter * 0.01 + time) * 50;
-                    const wave2 = Math.cos((x + y) * 0.008 + time * 0.7) * 30;
-                    const wave3 = Math.sin(x * 0.015 - time * 0.5) * 20;
-                    
-                    const z = wave1 + wave2 + wave3;
-
-                    const projected = project3D(x, y, z);
-                    
-                    if (projected.x > -50 && projected.x < width + 50 && 
-                        projected.y > -50 && projected.y < height + 50) {
-                        points.push({
-                            x: projected.x,
-                            y: projected.y,
-                            z: projected.z,
-                            scale: projected.scale,
-                            origX: x,
-                            origY: y
-                        });
+            let i = 0;
+            for (let ix = 0; ix < GRID_SIZE; ix++) {
+                for (let iy = 0; iy < GRID_SIZE; iy++) {
+                    if (i < PARTICLE_COUNT) {
+                        positions[i * 3] = (ix - GRID_SIZE / 2) * SEPARATION;
+                        positions[i * 3 + 1] = 0;
+                        positions[i * 3 + 2] = (iy - GRID_SIZE / 2) * SEPARATION;
+                        opacities[i] = 1;
+                        sizes[i] = 2;
+                        i++;
                     }
                 }
             }
 
-            // Sort by z-depth (back to front)
-            points.sort((a, b) => a.z - b.z);
+            geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('opacity', new THREE.BufferAttribute(opacities, 1));
+            geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
-            // Draw points
-            points.forEach(point => {
-                const distFromCenter = Math.sqrt(point.origX * point.origX + point.origY * point.origY);
-                const maxDist = Math.sqrt(offsetX * offsetX + offsetY * offsetY);
-                
-                // Opacity based on distance from center and depth
-                let opacity = (1 - distFromCenter / maxDist) * 0.8;
-                opacity *= (point.scale * 0.8);
-                opacity = Math.max(0.05, Math.min(0.6, opacity));
-
-                // Size based on depth
-                const size = dotSize * point.scale;
-
-                ctx.beginPath();
-                ctx.arc(point.x, point.y, Math.max(0.5, size), 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-                ctx.fill();
+            // Shader material for better looking particles
+            const material = new THREE.ShaderMaterial({
+                uniforms: {
+                    time: { value: 0 },
+                    pixelRatio: { value: window.devicePixelRatio }
+                },
+                vertexShader: `
+                    attribute float opacity;
+                    attribute float size;
+                    varying float vOpacity;
+                    uniform float time;
+                    uniform float pixelRatio;
+                    
+                    void main() {
+                        vOpacity = opacity;
+                        
+                        vec3 pos = position;
+                        
+                        // Wave effect
+                        float dist = length(pos.xz);
+                        float wave1 = sin(dist * 0.03 - time * 0.8) * 15.0;
+                        float wave2 = cos(pos.x * 0.02 + pos.z * 0.02 + time * 0.5) * 10.0;
+                        float wave3 = sin(pos.x * 0.04 - time * 0.3) * 8.0;
+                        
+                        pos.y = wave1 + wave2 + wave3;
+                        
+                        // Fade at edges
+                        float edgeFade = 1.0 - smoothstep(100.0, 180.0, dist);
+                        vOpacity = edgeFade * 0.7;
+                        
+                        vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+                        gl_Position = projectionMatrix * mvPosition;
+                        
+                        // Size attenuation
+                        gl_PointSize = size * pixelRatio * (200.0 / -mvPosition.z);
+                    }
+                `,
+                fragmentShader: `
+                    varying float vOpacity;
+                    
+                    void main() {
+                        // Circular point
+                        vec2 center = gl_PointCoord - vec2(0.5);
+                        float dist = length(center);
+                        if (dist > 0.5) discard;
+                        
+                        // Soft edge
+                        float alpha = smoothstep(0.5, 0.2, dist) * vOpacity;
+                        
+                        gl_FragColor = vec4(1.0, 1.0, 1.0, alpha);
+                    }
+                `,
+                transparent: true,
+                depthWrite: false,
+                blending: THREE.AdditiveBlending
             });
 
-            // Draw connecting lines (subtle)
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
-            ctx.lineWidth = 0.5;
-            
-            for (let i = 0; i < points.length; i++) {
-                for (let j = i + 1; j < points.length; j++) {
-                    const dx = points[i].x - points[j].x;
-                    const dy = points[i].y - points[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (dist < gridSize * 1.5 && dist > gridSize * 0.8) {
-                        ctx.beginPath();
-                        ctx.moveTo(points[i].x, points[i].y);
-                        ctx.lineTo(points[j].x, points[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
+            particles = new THREE.Points(geometry, material);
+            particles.rotation.x = -0.5;
+            particles.rotation.z = 0.3;
+            scene.add(particles);
 
-            time += 0.008;
-            requestAnimationFrame(draw);
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+
+            // Events
+            window.addEventListener('resize', onWindowResize);
+            document.addEventListener('mousemove', onMouseMove);
+
+            animate();
         }
 
-        // Mouse interaction
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
 
-        window.addEventListener('resize', resize);
-        resize();
-        draw();
+        function onMouseMove(event) {
+            mouseX = (event.clientX - window.innerWidth / 2) * 0.0003;
+            mouseY = (event.clientY - window.innerHeight / 2) * 0.0003;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            time += 0.01;
+            particles.material.uniforms.time.value = time;
+
+            // Subtle camera movement based on mouse
+            camera.position.x += (mouseX * 30 - camera.position.x) * 0.02;
+            camera.position.y += (80 - mouseY * 20 - camera.position.y) * 0.02;
+            camera.lookAt(0, 0, 0);
+
+            // Slow rotation
+            particles.rotation.z += 0.0003;
+
+            renderer.render(scene, camera);
+        }
+
+        init();
 
         // Scroll animations
         const observer = new IntersectionObserver((entries) => {
