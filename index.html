@@ -7,7 +7,7 @@
     <meta name="description" content="16 years in the trenches. Now I help businesses eliminate manual chaos with intelligent automation.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after {
             margin: 0;
@@ -16,93 +16,183 @@
         }
 
         :root {
-            --bg: #09090b;
-            --bg-elevated: #18181b;
-            --bg-card: #1f1f23;
-            --text: #fafafa;
-            --text-secondary: #a1a1aa;
-            --text-muted: #52525b;
-            --border: #27272a;
-            --accent: #22c55e;
-            --accent-dim: rgba(34, 197, 94, 0.1);
+            --bg: #050505;
+            --bg-card: #0d0d0d;
+            --bg-elevated: #151515;
+            --text: #ffffff;
+            --text-secondary: #8a8a8a;
+            --text-muted: #4a4a4a;
+            --border: #1f1f1f;
+            --accent: #00ff88;
+            --accent-dim: rgba(0, 255, 136, 0.1);
         }
 
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
-        .mono { font-family: 'Geist Mono', monospace; }
-
-        /* Nav */
-        nav {
+        /* Animated Background Canvas */
+        #bgCanvas {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        /* Floating Nav */
+        nav {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 100;
-            padding: 16px 48px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background: rgba(9, 9, 11, 0.8);
+            gap: 8px;
+            padding: 8px 8px 8px 24px;
+            background: rgba(13, 13, 13, 0.8);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            border: 1px solid var(--border);
+            border-radius: 100px;
         }
 
         .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text);
-        }
-
-        .nav-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            object-fit: cover;
-            filter: grayscale(100%);
-        }
-
-        .nav-name {
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.9375rem;
+            color: var(--text);
+            text-decoration: none;
+            margin-right: 24px;
         }
 
         .nav-links {
             display: flex;
-            align-items: center;
             gap: 32px;
         }
 
         .nav-links a {
             font-size: 0.875rem;
+            font-weight: 500;
             color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: color 0.3s;
         }
 
         .nav-links a:hover { color: var(--text); }
 
-        .btn {
+        .nav-cta {
+            padding: 10px 24px;
+            background: var(--text);
+            color: var(--bg);
+            font-size: 0.875rem;
+            font-weight: 600;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 140px 24px 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 20px;
-            font-family: 'Outfit', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 500;
-            border-radius: 8px;
+            padding: 8px 16px 8px 12px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 100px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 32px;
+            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.4); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(0, 255, 136, 0); }
+        }
+
+        .hero-title {
+            font-size: clamp(2.75rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            max-width: 900px;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+            opacity: 0;
+        }
+
+        .hero-title-accent {
+            background: linear-gradient(135deg, var(--accent), #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            max-width: 580px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            opacity: 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            border-radius: 12px;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
             border: none;
         }
@@ -113,8 +203,8 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 10px 40px rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(255,255,255,0.15);
         }
 
         .btn-ghost {
@@ -123,165 +213,18 @@
             border: 1px solid var(--border);
         }
 
-        .btn-ghost:hover { border-color: var(--text-muted); }
+        .btn-ghost:hover {
+            border-color: var(--text-secondary);
+            background: var(--bg-card);
+        }
 
         .btn svg {
-            width: 14px;
-            height: 14px;
-            transition: transform 0.2s;
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s;
         }
 
-        .btn:hover svg { transform: translateX(2px); }
-
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            padding: 140px 48px 80px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Animated Grid Background */
-        .grid-bg {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            opacity: 0.4;
-        }
-
-        .grid-lines {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%);
-        }
-
-        .grid-glow {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 600px;
-            background: radial-gradient(ellipse at center, var(--accent-dim) 0%, transparent 70%);
-            animation: glow-pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes glow-pulse {
-            0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
-            50% { opacity: 0.6; transform: translateX(-50%) scale(1.1); }
-        }
-
-        /* Floating Nodes */
-        .nodes {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
-
-        .node {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: float 20s linear infinite;
-        }
-
-        .node::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            background: var(--accent);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: pulse-node 2s ease-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
-        }
-
-        @keyframes pulse-node {
-            0% { transform: scale(1); opacity: 0.3; }
-            100% { transform: scale(2.5); opacity: 0; }
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px 6px 8px;
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-            animation: fadeInDown 0.8s ease forwards;
-            opacity: 0;
-        }
-
-        .hero-badge-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: blink 2s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
-            margin-bottom: 24px;
-            animation: fadeInUp 0.8s ease 0.1s forwards;
-            opacity: 0;
-        }
-
-        .hero-title-dim { color: var(--text-muted); }
-
-        .hero-description {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.8;
-            animation: fadeInUp 0.8s ease 0.2s forwards;
-            opacity: 0;
-        }
-
-        .hero-cta {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            animation: fadeInUp 0.8s ease 0.3s forwards;
-            opacity: 0;
-        }
+        .btn:hover svg { transform: translateX(4px); }
 
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-20px); }
@@ -289,74 +232,15 @@
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Terminal Card */
-        .terminal-wrapper {
-            margin-top: 80px;
-            animation: fadeInUp 0.8s ease 0.4s forwards;
-            opacity: 0;
-        }
-
-        .terminal {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .terminal-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 16px;
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--border);
-        }
-
-        .terminal-dot.red { background: #ef4444; }
-        .terminal-dot.yellow { background: #eab308; }
-        .terminal-dot.green { background: #22c55e; }
-
-        .terminal-title {
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        .terminal-body {
-            padding: 20px;
-            font-family: 'Geist Mono', monospace;
-            font-size: 0.8125rem;
-            line-height: 1.8;
-        }
-
-        .terminal-line {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 8px;
-        }
-
-        .terminal-prompt { color: var(--accent); }
-        .terminal-cmd { color: var(--text); }
-        .terminal-output { color: var(--text-secondary); padding-left: 24px; }
-        .terminal-success { color: var(--accent); }
-
         /* Stats */
         .stats {
-            padding: 80px 48px;
+            position: relative;
+            z-index: 1;
+            padding: 80px 24px;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
@@ -369,28 +253,33 @@
             gap: 48px;
         }
 
-        .stat { text-align: center; }
+        .stat {
+            text-align: center;
+        }
 
         .stat-value {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 4px;
-            background: linear-gradient(135deg, var(--text), var(--text-secondary));
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            background: linear-gradient(180deg, var(--text), var(--text-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .stat-label {
             font-size: 0.8125rem;
+            font-weight: 500;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
+            margin-top: 4px;
         }
 
-        /* Problem/Solution */
+        /* Problem Section */
         .problem {
-            padding: 120px 48px;
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px;
         }
 
         .problem-inner {
@@ -398,32 +287,33 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 100px;
+            gap: 80px;
         }
 
-        .section-label {
+        .section-eyebrow {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.6875rem;
+            gap: 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 24px;
+            color: var(--accent);
+            margin-bottom: 20px;
         }
 
-        .section-label::before {
+        .section-eyebrow::before {
             content: '';
-            width: 8px;
-            height: 8px;
+            width: 12px;
+            height: 12px;
             background: var(--accent);
-            border-radius: 2px;
+            border-radius: 3px;
         }
 
         .problem-title {
-            font-size: 2rem;
-            font-weight: 600;
-            line-height: 1.3;
+            font-size: 2.25rem;
+            font-weight: 700;
+            line-height: 1.25;
             letter-spacing: -0.02em;
             margin-bottom: 24px;
         }
@@ -435,6 +325,11 @@
             margin-bottom: 20px;
         }
 
+        .problem-text strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
         .solution-list {
             list-style: none;
             display: flex;
@@ -442,47 +337,50 @@
             gap: 16px;
         }
 
-        .solution-item {
+        .solution-card {
             display: flex;
             gap: 16px;
-            padding: 20px;
-            background: var(--bg-elevated);
+            padding: 24px;
+            background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: all 0.3s;
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .solution-item:hover {
-            border-color: var(--text-muted);
-            transform: translateX(4px);
+        .solution-card:hover {
+            border-color: var(--accent);
+            transform: translateX(8px);
+            box-shadow: 0 0 40px var(--accent-dim);
         }
 
         .solution-num {
-            font-family: 'Geist Mono', monospace;
             font-size: 0.75rem;
+            font-weight: 700;
             color: var(--accent);
-            padding: 4px 8px;
+            padding: 6px 10px;
             background: var(--accent-dim);
-            border-radius: 4px;
+            border-radius: 6px;
             height: fit-content;
         }
 
         .solution-content h3 {
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 6px;
         }
 
         .solution-content p {
             font-size: 0.875rem;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         /* Services */
         .services {
-            padding: 120px 48px;
-            background: var(--bg-elevated);
+            position: relative;
+            z-index: 1;
+            padding: 120px 24px;
+            background: var(--bg-card);
         }
 
         .services-inner {
@@ -498,10 +396,11 @@
         }
 
         .services-title {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 2.75rem;
+            font-weight: 800;
             letter-spacing: -0.03em;
             max-width: 500px;
+            line-height: 1.15;
         }
 
         .services-grid {
@@ -513,9 +412,9 @@
         .service-card {
             background: var(--bg);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 20px;
+            padding: 36px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
         }
@@ -526,7 +425,7 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
+            height: 3px;
             background: linear-gradient(90deg, var(--accent), transparent);
             transform: scaleX(0);
             transform-origin: left;
@@ -534,62 +433,62 @@
         }
 
         .service-card:hover {
-            transform: translateY(-4px);
             border-color: var(--text-muted);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
         }
 
         .service-card:hover::before { transform: scaleX(1); }
 
         .service-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--bg-card);
+            width: 56px;
+            height: 56px;
+            background: var(--bg-elevated);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
 
         .service-icon svg {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             color: var(--accent);
         }
 
         .service-title {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.375rem;
+            font-weight: 700;
             margin-bottom: 12px;
         }
 
         .service-desc {
             font-size: 0.9375rem;
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         /* CTA */
         .cta {
-            padding: 140px 48px;
-            text-align: center;
             position: relative;
+            z-index: 1;
+            padding: 160px 24px;
+            text-align: center;
         }
 
         .cta-inner {
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
-            position: relative;
-            z-index: 2;
         }
 
         .cta-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            font-weight: 800;
             letter-spacing: -0.03em;
             margin-bottom: 20px;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .cta-text {
@@ -607,7 +506,9 @@
 
         /* Footer */
         footer {
-            padding: 32px 48px;
+            position: relative;
+            z-index: 1;
+            padding: 32px 24px;
             border-top: 1px solid var(--border);
         }
 
@@ -633,17 +534,16 @@
             font-size: 0.8125rem;
             color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: color 0.3s;
         }
 
         .footer-links a:hover { color: var(--text); }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            nav { padding: 16px 24px; }
+            nav { padding: 8px 16px 8px 20px; }
             .nav-links { display: none; }
-            .hero, .problem, .services, .cta { padding: 80px 24px; }
-            .stats { padding: 60px 24px; }
+            .nav-brand { margin-right: 16px; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
             .problem-inner { grid-template-columns: 1fr; gap: 64px; }
             .services-grid { grid-template-columns: 1fr; }
@@ -652,83 +552,46 @@
 
         @media (max-width: 640px) {
             .stats-grid { grid-template-columns: 1fr; }
-            .hero-cta, .cta-buttons { flex-direction: column; }
+            .hero-cta, .cta-buttons { flex-direction: column; width: 100%; max-width: 320px; }
             .btn { width: 100%; justify-content: center; }
             .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
         }
     </style>
 </head>
 <body>
+    <canvas id="bgCanvas"></canvas>
+
     <nav>
-        <a href="#" class="nav-brand">
-            <img src="carlos-mitchell.jpg" alt="Carlos Mitchell" class="nav-avatar">
-            <span class="nav-name">Carlos Mitchell</span>
-        </a>
+        <a href="#" class="nav-brand">Carlos Mitchell</a>
         <div class="nav-links">
             <a href="#approach">Approach</a>
             <a href="#services">Services</a>
-            <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">
-                Let's Talk
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-            </a>
+            <a href="#contact">Contact</a>
         </div>
+        <a href="mailto:carlos@flowgrammatic.com" class="nav-cta">Get Started</a>
     </nav>
 
     <section class="hero">
-        <div class="grid-bg">
-            <div class="grid-lines"></div>
-            <div class="grid-glow"></div>
+        <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Available for Projects
         </div>
-        <div class="nodes" id="nodes"></div>
-
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                Available for Projects
-            </div>
-            <h1 class="hero-title">
-                Your business runs on <span class="hero-title-dim">duct tape</span> and spreadsheets.<br>I fix that.
-            </h1>
-            <p class="hero-description">
-                16 years in the trenches—running marketing, scaling ecommerce, drowning in the same operational chaos you're facing now. I learned to build systems that actually work. Now I build them for businesses like yours.
-            </p>
-            <div class="hero-cta">
-                <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">
-                    Start a Project
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
-                </a>
-                <a href="https://isparkzx.github.io/flowgrammatic/" class="btn btn-ghost" target="_blank">
-                    View FlowGrammatic
-                </a>
-            </div>
-
-            <div class="terminal-wrapper">
-                <div class="terminal">
-                    <div class="terminal-header">
-                        <span class="terminal-dot red"></span>
-                        <span class="terminal-dot yellow"></span>
-                        <span class="terminal-dot green"></span>
-                        <span class="terminal-title">automation.sh</span>
-                    </div>
-                    <div class="terminal-body">
-                        <div class="terminal-line">
-                            <span class="terminal-prompt">$</span>
-                            <span class="terminal-cmd">flowgrammatic analyze --process="lead_routing"</span>
-                        </div>
-                        <div class="terminal-output">→ Found 12 manual handoffs</div>
-                        <div class="terminal-output">→ Est. 23 hrs/week wasted</div>
-                        <div class="terminal-line">
-                            <span class="terminal-prompt">$</span>
-                            <span class="terminal-cmd">flowgrammatic automate --deploy</span>
-                        </div>
-                        <div class="terminal-output terminal-success">✓ Workflow deployed. Zero human intervention required.</div>
-                    </div>
-                </div>
-            </div>
+        <h1 class="hero-title">
+            Your Business Runs on <span class="hero-title-accent">Duct Tape</span> and Spreadsheets. I Fix That.
+        </h1>
+        <p class="hero-description">
+            16 years in the trenches—running marketing, scaling ecommerce, drowning in the same operational chaos you're facing now. I learned to build systems that actually work.
+        </p>
+        <div class="hero-cta">
+            <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">
+                Start a Project
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
+            <a href="https://isparkzx.github.io/flowgrammatic/" class="btn btn-ghost" target="_blank">
+                View FlowGrammatic
+            </a>
         </div>
     </section>
 
@@ -756,8 +619,8 @@
     <section class="problem" id="approach">
         <div class="problem-inner">
             <div>
-                <div class="section-label">The Problem</div>
-                <h2 class="problem-title">You're not scaling. You're hiring more people to do broken processes faster.</h2>
+                <div class="section-eyebrow">The Problem</div>
+                <h2 class="problem-title">You're Not Scaling. You're Hiring More People to Do Broken Processes Faster.</h2>
                 <p class="problem-text">
                     Every new customer means more manual data entry. More email forwarding. More "let me check on that and get back to you." Your team spends 60% of their time on tasks a machine should handle.
                 </p>
@@ -769,30 +632,30 @@
                 </p>
             </div>
             <div>
-                <div class="section-label">The Fix</div>
+                <div class="section-eyebrow">The Fix</div>
                 <ul class="solution-list">
-                    <li class="solution-item">
+                    <li class="solution-card">
                         <span class="solution-num">01</span>
                         <div class="solution-content">
                             <h3>Audit the Chaos</h3>
                             <p>I map every process, every handoff, every "we've always done it this way." You'll see exactly where the hours go.</p>
                         </div>
                     </li>
-                    <li class="solution-item">
+                    <li class="solution-card">
                         <span class="solution-num">02</span>
                         <div class="solution-content">
                             <h3>Design the System</h3>
                             <p>Not a band-aid. A real architecture—built on n8n, Make, or custom solutions—that handles exceptions and scales.</p>
                         </div>
                     </li>
-                    <li class="solution-item">
+                    <li class="solution-card">
                         <span class="solution-num">03</span>
                         <div class="solution-content">
                             <h3>Build It Right</h3>
                             <p>Every workflow documented. Every edge case handled. Your team trained. No black boxes that break when I leave.</p>
                         </div>
                     </li>
-                    <li class="solution-item">
+                    <li class="solution-card">
                         <span class="solution-num">04</span>
                         <div class="solution-content">
                             <h3>Add Intelligence</h3>
@@ -810,7 +673,7 @@
                 <h2 class="services-title">Systems I Build</h2>
                 <a href="mailto:carlos@flowgrammatic.com" class="btn btn-ghost">
                     Discuss Your Project
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                     </svg>
                 </a>
@@ -847,16 +710,16 @@
         </div>
     </section>
 
-    <section class="cta">
+    <section class="cta" id="contact">
         <div class="cta-inner">
-            <h2 class="cta-title">Stop patching.<br>Start building systems.</h2>
+            <h2 class="cta-title">Stop Patching.<br>Start Building Systems.</h2>
             <p class="cta-text">
                 A 30-minute call to understand what's broken. If I can help, I'll tell you exactly how. If I can't, I'll tell you that too.
             </p>
             <div class="cta-buttons">
                 <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">
                     Book a Call
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                     </svg>
                 </a>
@@ -879,19 +742,70 @@
     </footer>
 
     <script>
-        // Floating nodes animation
-        const nodesContainer = document.getElementById('nodes');
-        function createNode() {
-            const node = document.createElement('div');
-            node.className = 'node';
-            node.style.left = Math.random() * 100 + '%';
-            node.style.animationDuration = (15 + Math.random() * 10) + 's';
-            node.style.animationDelay = Math.random() * 5 + 's';
-            nodesContainer.appendChild(node);
-            setTimeout(() => node.remove(), 25000);
+        // Animated diagonal lines background
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        const lines = [];
+        const lineCount = 50;
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
         }
-        for (let i = 0; i < 5; i++) setTimeout(createNode, i * 1000);
-        setInterval(createNode, 3000);
+
+        function createLine() {
+            return {
+                x: Math.random() * width * 1.5,
+                y: -100,
+                length: 100 + Math.random() * 200,
+                speed: 2 + Math.random() * 4,
+                opacity: 0.1 + Math.random() * 0.3,
+                thickness: 1 + Math.random() * 1.5
+            };
+        }
+
+        function init() {
+            resize();
+            for (let i = 0; i < lineCount; i++) {
+                const line = createLine();
+                line.y = Math.random() * height;
+                line.x = Math.random() * width * 1.5 - width * 0.25;
+                lines.push(line);
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            lines.forEach((line, i) => {
+                // Draw diagonal line
+                ctx.beginPath();
+                ctx.moveTo(line.x, line.y);
+                ctx.lineTo(line.x - line.length * 0.7, line.y + line.length);
+                ctx.strokeStyle = `rgba(255, 255, 255, ${line.opacity})`;
+                ctx.lineWidth = line.thickness;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+
+                // Move line
+                line.x -= line.speed * 0.7;
+                line.y += line.speed;
+
+                // Reset if off screen
+                if (line.y > height + line.length || line.x < -line.length) {
+                    lines[i] = createLine();
+                    lines[i].x = width + Math.random() * 200;
+                }
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        init();
+        animate();
 
         // Scroll animations
         const observer = new IntersectionObserver((entries) => {
@@ -903,10 +817,10 @@
             });
         }, { threshold: 0.1, rootMargin: '-50px' });
 
-        document.querySelectorAll('.stat, .service-card, .solution-item').forEach((el, i) => {
+        document.querySelectorAll('.stat, .service-card, .solution-card').forEach((el, i) => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = `all 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${i * 0.1}s`;
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.1}s`;
             observer.observe(el);
         });
     </script>
