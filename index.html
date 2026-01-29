@@ -3,169 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carlos Mitchell — AI Automation Expert</title>
-    <meta name="description" content="CEO of FlowGrammatic. 16+ years transforming businesses through AI automation and digital marketing.">
+    <title>Carlos Mitchell — AI Automation Architect</title>
+    <meta name="description" content="16+ years transforming businesses through intelligent automation systems.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
         :root {
-            --bg: #fafafa;
-            --bg-white: #ffffff;
-            --text-primary: #0a0a0a;
-            --text-secondary: #525252;
-            --text-muted: #a3a3a3;
-            --accent: #0a0a0a;
-            --accent-light: #f5f5f5;
-            --border: #e5e5e5;
-            --green: #22c55e;
+            --bg: #fafaf9;
+            --bg-elevated: #ffffff;
+            --text: #0c0c0c;
+            --text-secondary: #6b6b6b;
+            --text-muted: #a8a8a8;
+            --border: #e8e8e8;
+            --accent: #0c0c0c;
+            --green: #10b981;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Outfit', sans-serif;
             background: var(--bg);
-            color: var(--text-primary);
-            min-height: 100vh;
-            line-height: 1.5;
+            color: var(--text);
+            line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Nav */
-        .nav {
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 48px;
-            background: var(--bg-white);
+            background: rgba(250, 250, 249, 0.8);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
 
         .nav-brand {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.125rem;
+            gap: 12px;
             text-decoration: none;
-            color: var(--text-primary);
+            color: var(--text);
         }
 
         .nav-logo {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
             object-fit: cover;
+        }
+
+        .nav-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: -0.02em;
         }
 
         .nav-links {
             display: flex;
-            align-items: center;
-            gap: 32px;
+            gap: 40px;
         }
 
-        .nav-link {
+        .nav-links a {
             font-size: 0.9375rem;
+            font-weight: 400;
             color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.2s;
         }
 
-        .nav-link:hover {
-            color: var(--text-primary);
+        .nav-links a:hover {
+            color: var(--text);
         }
 
         .nav-cta {
             display: flex;
+            gap: 12px;
             align-items: center;
-            gap: 16px;
         }
 
         .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             padding: 10px 20px;
-            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
             font-size: 0.9375rem;
             font-weight: 500;
+            border-radius: 8px;
             text-decoration: none;
-            transition: all 0.2s;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             border: none;
         }
 
         .btn-primary {
-            background: var(--accent);
-            color: white;
+            background: var(--text);
+            color: var(--bg);
         }
 
         .btn-primary:hover {
-            background: #262626;
+            background: #2a2a2a;
+            transform: translateY(-1px);
         }
 
-        .btn-secondary {
+        .btn-ghost {
+            color: var(--text);
             background: transparent;
-            color: var(--text-primary);
         }
 
-        .btn-secondary:hover {
-            background: var(--accent-light);
+        .btn-ghost:hover {
+            background: rgba(0,0,0,0.04);
         }
 
         /* Hero */
         .hero {
+            min-height: 100vh;
+            padding: 140px 48px 100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
             position: relative;
-            padding: 100px 48px 120px;
-            background: var(--bg-white);
-            overflow: hidden;
-        }
-
-        .hero-grid {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
-            background-size: 24px 24px;
-            opacity: 0.7;
-            mask-image: linear-gradient(to left, rgba(0,0,0,0.4), transparent 70%);
-            -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.4), transparent 70%);
         }
 
         .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .hero-text {
             position: relative;
             z-index: 2;
         }
 
-        .status-badge {
+        .status-pill {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 14px;
-            background: var(--bg);
+            padding: 6px 14px 6px 10px;
+            background: var(--bg-elevated);
             border: 1px solid var(--border);
             border-radius: 100px;
             font-size: 0.8125rem;
+            font-weight: 500;
             color: var(--text-secondary);
             margin-bottom: 32px;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
         }
 
         .status-dot {
@@ -173,163 +173,289 @@
             height: 8px;
             background: var(--green);
             border-radius: 50%;
-            animation: pulse 2s infinite;
+            position: relative;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.1); }
+        .status-dot::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: var(--green);
+            opacity: 0.3;
+            animation: pulse-ring 2s ease-out infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.3; }
+            100% { transform: scale(1.8); opacity: 0; }
         }
 
         .hero-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 4.5rem;
-            font-weight: 700;
-            line-height: 1.05;
-            letter-spacing: -0.03em;
-            margin-bottom: 24px;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            margin-bottom: 28px;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+            opacity: 0;
         }
 
-        .hero-title-accent {
-            background: linear-gradient(135deg, #525252, #0a0a0a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .hero-title-muted {
+            color: var(--text-muted);
         }
 
         .hero-description {
             font-size: 1.25rem;
             color: var(--text-secondary);
+            max-width: 440px;
             line-height: 1.7;
             margin-bottom: 40px;
-            max-width: 480px;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+            opacity: 0;
         }
 
         .hero-cta {
             display: flex;
             gap: 16px;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            opacity: 0;
         }
 
-        .btn-large {
+        .btn-lg {
             padding: 14px 28px;
             font-size: 1rem;
         }
 
-        .btn-arrow {
-            margin-left: 8px;
-            transition: transform 0.2s;
+        .btn svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.25s;
         }
 
-        .btn:hover .btn-arrow {
-            transform: translateX(4px);
+        .btn:hover svg {
+            transform: translateX(3px);
         }
 
-        /* Avatar Card */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 3D Animated Grid */
         .hero-visual {
             position: relative;
-            z-index: 2;
-        }
-
-        .avatar-card {
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 32px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-        }
-
-        .avatar-card-header {
+            height: 500px;
             display: flex;
             align-items: center;
-            gap: 4px;
-            margin-bottom: 24px;
+            justify-content: center;
+            animation: fadeIn 1s ease 0.4s forwards;
+            opacity: 0;
         }
 
-        .avatar-card-dot {
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .grid-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            perspective: 1000px;
+        }
+
+        .animated-grid {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(60deg) rotateZ(-45deg);
+            transform-style: preserve-3d;
+        }
+
+        .grid-plane {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(12, 1fr);
+            gap: 2px;
+        }
+
+        .grid-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--text);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: dotPulse 4s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.05s);
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.5); }
+        }
+
+        /* Flow Card */
+        .flow-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            width: 320px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
+            animation: floatCard 6s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-10px); }
+        }
+
+        .flow-card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .flow-card-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .flow-card-dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
             background: var(--border);
         }
 
-        .avatar-card-dot.active {
+        .flow-card-dot.active {
             background: var(--green);
         }
 
-        .avatar-card-title {
+        .flow-card-title {
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             color: var(--text-muted);
-            margin-left: 12px;
+            margin-left: auto;
         }
 
-        .avatar-wrapper {
+        .flow-diagram {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            gap: 12px;
         }
 
-        .avatar-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--bg);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-            margin-bottom: 20px;
-        }
-
-        .avatar-name {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .avatar-role {
-            color: var(--text-secondary);
-            font-size: 0.9375rem;
-            margin-bottom: 16px;
-        }
-
-        .avatar-stats {
+        .flow-node {
             display: flex;
-            gap: 24px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
-            width: 100%;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg);
+            border-radius: 10px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .flow-node:hover {
+            background: #f0f0f0;
+        }
+
+        .flow-node-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--text);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
-        .avatar-stat {
-            text-align: center;
+        .flow-node-icon svg {
+            width: 16px;
+            height: 16px;
+            color: var(--bg);
         }
 
-        .avatar-stat-value {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
+        .flow-node-content {
+            flex: 1;
+            min-width: 0;
         }
 
-        .avatar-stat-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        .flow-node-label {
+            font-size: 0.6875rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-bottom: 2px;
         }
 
-        /* Logos Section */
+        .flow-node-text {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .flow-connector {
+            width: 2px;
+            height: 16px;
+            background: linear-gradient(to bottom, var(--border), transparent);
+            margin-left: 27px;
+        }
+
+        .flow-result {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px;
+            background: linear-gradient(135deg, #0c0c0c, #2a2a2a);
+            border-radius: 10px;
+            color: var(--bg);
+        }
+
+        .flow-result-badge {
+            padding: 4px 10px;
+            background: var(--green);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .flow-result-text {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Logos */
         .logos {
             padding: 60px 48px;
             border-top: 1px solid var(--border);
-            background: var(--bg-white);
+            background: var(--bg-elevated);
         }
 
-        .logos-content {
-            max-width: 1200px;
+        .logos-inner {
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -347,29 +473,30 @@
         .logos-list {
             display: flex;
             align-items: center;
-            gap: 48px;
+            gap: 56px;
         }
 
         .logo-item {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 700;
             color: var(--text-muted);
+            letter-spacing: -0.02em;
             transition: color 0.2s;
         }
 
         .logo-item:hover {
-            color: var(--text-primary);
+            color: var(--text);
         }
 
-        /* Services Section */
+        /* Services */
         .services {
-            padding: 100px 48px;
+            padding: 120px 48px;
             background: var(--bg);
         }
 
-        .services-content {
-            max-width: 1200px;
+        .services-inner {
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -382,13 +509,14 @@
             margin-bottom: 16px;
         }
 
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3rem;
+        .section-heading {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.25rem);
             font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 60px;
-            max-width: 600px;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 64px;
+            max-width: 700px;
         }
 
         .services-grid {
@@ -398,83 +526,111 @@
         }
 
         .service-card {
-            background: var(--bg-white);
+            background: var(--bg-elevated);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.3s;
+            border-radius: 20px;
+            padding: 36px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--text);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .service-card:hover {
-            border-color: var(--text-muted);
             transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.15);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
 
         .service-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--accent-light);
-            border-radius: 12px;
+            width: 52px;
+            height: 52px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+        }
+
+        .service-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--text);
         }
 
         .service-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.375rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
             margin-bottom: 12px;
         }
 
-        .service-description {
-            color: var(--text-secondary);
+        .service-desc {
             font-size: 0.9375rem;
-            line-height: 1.6;
+            color: var(--text-secondary);
+            line-height: 1.7;
         }
 
-        /* CTA Section */
+        /* CTA */
         .cta {
-            padding: 100px 48px;
-            background: var(--bg-white);
+            padding: 120px 48px;
+            background: var(--bg-elevated);
             border-top: 1px solid var(--border);
         }
 
-        .cta-content {
+        .cta-inner {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .cta-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3rem;
+        .cta-heading {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 700;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
             margin-bottom: 20px;
         }
 
-        .cta-description {
+        .cta-text {
             font-size: 1.125rem;
             color: var(--text-secondary);
             margin-bottom: 40px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
         }
 
         /* Footer */
-        .footer {
+        footer {
             padding: 40px 48px;
             border-top: 1px solid var(--border);
             background: var(--bg);
         }
 
-        .footer-content {
-            max-width: 1200px;
+        .footer-inner {
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -488,163 +644,146 @@
 
         .footer-links {
             display: flex;
-            gap: 24px;
+            gap: 32px;
         }
 
-        .footer-link {
+        .footer-links a {
             font-size: 0.875rem;
             color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.2s;
         }
 
-        .footer-link:hover {
-            color: var(--text-primary);
+        .footer-links a:hover {
+            color: var(--text);
         }
 
         /* Responsive */
-        @media (max-width: 968px) {
-            .hero-content {
+        @media (max-width: 1024px) {
+            nav { padding: 16px 24px; }
+            .nav-links { display: none; }
+            .hero {
                 grid-template-columns: 1fr;
+                padding: 120px 24px 60px;
                 text-align: center;
             }
-
-            .hero-title {
-                font-size: 3rem;
-            }
-
-            .hero-description {
-                max-width: 100%;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .hero-cta {
-                justify-content: center;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .logos-content {
-                flex-direction: column;
-                gap: 24px;
-            }
-
-            .logos-list {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .nav {
-                padding: 16px 24px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero, .services, .cta {
-                padding: 60px 24px;
-            }
+            .hero-description { max-width: 100%; margin: 0 auto 40px; }
+            .hero-cta { justify-content: center; }
+            .hero-visual { height: 400px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .services, .cta { padding: 80px 24px; }
+            .logos-inner { flex-direction: column; gap: 24px; }
+            .logos-list { flex-wrap: wrap; justify-content: center; gap: 24px; }
         }
 
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2.25rem;
-            }
-
-            .section-title, .cta-title {
-                font-size: 2rem;
-            }
-
-            .avatar-stats {
-                flex-direction: column;
-                gap: 16px;
-            }
+        @media (max-width: 640px) {
+            .hero-cta { flex-direction: column; }
+            .btn-lg { width: 100%; justify-content: center; }
+            .cta-buttons { flex-direction: column; }
+            .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Nav -->
-    <nav class="nav">
+    <nav>
         <a href="#" class="nav-brand">
             <img src="carlos-avatar.png" alt="CM" class="nav-logo">
-            CARLOS MITCHELL
+            <span class="nav-name">CARLOS MITCHELL</span>
         </a>
         <div class="nav-links">
-            <a href="#services" class="nav-link">Services</a>
-            <a href="#about" class="nav-link">About</a>
-            <a href="https://isparkzx.github.io/flowgrammatic/" class="nav-link" target="_blank">FlowGrammatic</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="https://isparkzx.github.io/flowgrammatic/" target="_blank">FlowGrammatic</a>
         </div>
         <div class="nav-cta">
-            <a href="https://www.linkedin.com/in/carlosmitchell/" class="btn btn-secondary" target="_blank">LinkedIn</a>
-            <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">Let's Talk</a>
+            <a href="https://www.linkedin.com/in/carlosmitchell/" class="btn btn-ghost" target="_blank">LinkedIn</a>
+            <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">
+                Let's Talk
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
         </div>
     </nav>
 
-    <!-- Hero -->
     <section class="hero">
-        <div class="hero-grid"></div>
         <div class="hero-content">
-            <div class="hero-text">
-                <div class="status-badge">
-                    <span class="status-dot"></span>
-                    Available for Projects
-                </div>
-                <h1 class="hero-title">
-                    AI<br>
-                    <span class="hero-title-accent">Automation.</span>
-                </h1>
-                <p class="hero-description">
-                    16+ years transforming businesses through intelligent automation. 
-                    I eliminate bottlenecks, slash operational costs, and build systems that scale.
-                </p>
-                <div class="hero-cta">
-                    <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary btn-large">
-                        Start a Project <span class="btn-arrow">→</span>
-                    </a>
-                    <a href="https://isparkzx.github.io/flowgrammatic/" class="btn btn-secondary btn-large" target="_blank">
-                        View FlowGrammatic
-                    </a>
+            <div class="status-pill">
+                <span class="status-dot"></span>
+                Available for Projects
+            </div>
+            <h1 class="hero-title">
+                Automation<br>
+                <span class="hero-title-muted">Architect.</span>
+            </h1>
+            <p class="hero-description">
+                16+ years eliminating operational friction. I design intelligent systems that run your business while you sleep.
+            </p>
+            <div class="hero-cta">
+                <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary btn-lg">
+                    Start a Project
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                </a>
+                <a href="https://isparkzx.github.io/flowgrammatic/" class="btn btn-ghost btn-lg" target="_blank">
+                    View FlowGrammatic
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="grid-container">
+                <div class="animated-grid">
+                    <div class="grid-plane" id="gridPlane"></div>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="avatar-card">
-                    <div class="avatar-card-header">
-                        <span class="avatar-card-dot active"></span>
-                        <span class="avatar-card-dot"></span>
-                        <span class="avatar-card-dot"></span>
-                        <span class="avatar-card-title">Profile</span>
+            <div class="flow-card">
+                <div class="flow-card-header">
+                    <div class="flow-card-dots">
+                        <span class="flow-card-dot active"></span>
+                        <span class="flow-card-dot"></span>
+                        <span class="flow-card-dot"></span>
                     </div>
-                    <div class="avatar-wrapper">
-                        <img src="carlos-avatar.png" alt="Carlos Mitchell" class="avatar-img">
-                        <h2 class="avatar-name">Carlos Mitchell</h2>
-                        <p class="avatar-role">CEO, FlowGrammatic</p>
-                        <div class="avatar-stats">
-                            <div class="avatar-stat">
-                                <div class="avatar-stat-value">16+</div>
-                                <div class="avatar-stat-label">Years</div>
-                            </div>
-                            <div class="avatar-stat">
-                                <div class="avatar-stat-value">73%</div>
-                                <div class="avatar-stat-label">Cost Cut</div>
-                            </div>
-                            <div class="avatar-stat">
-                                <div class="avatar-stat-value">10×</div>
-                                <div class="avatar-stat-label">Faster</div>
-                            </div>
+                    <span class="flow-card-title">Automation Flow</span>
+                </div>
+                <div class="flow-diagram">
+                    <div class="flow-node">
+                        <div class="flow-node-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                            </svg>
                         </div>
+                        <div class="flow-node-content">
+                            <div class="flow-node-label">Trigger</div>
+                            <div class="flow-node-text">New lead captured</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-node">
+                        <div class="flow-node-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                            </svg>
+                        </div>
+                        <div class="flow-node-content">
+                            <div class="flow-node-label">AI Process</div>
+                            <div class="flow-node-text">Qualify & personalize</div>
+                        </div>
+                    </div>
+                    <div class="flow-connector"></div>
+                    <div class="flow-result">
+                        <span class="flow-result-badge">Done</span>
+                        <span class="flow-result-text">Lead routed to sales</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Logos -->
     <section class="logos">
-        <div class="logos-content">
+        <div class="logos-inner">
             <span class="logos-label">Expertise In</span>
             <div class="logos-list">
                 <span class="logo-item">n8n</span>
@@ -656,65 +795,102 @@
         </div>
     </section>
 
-    <!-- Services -->
     <section class="services" id="services">
-        <div class="services-content">
-            <span class="section-label">What I Do</span>
-            <h2 class="section-title">End-to-end automation that actually works.</h2>
+        <div class="services-inner">
+            <span class="section-label">What I Build</span>
+            <h2 class="section-heading">Systems that eliminate manual work and scale without headcount.</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">⚡</div>
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                        </svg>
+                    </div>
                     <h3 class="service-title">Workflow Automation</h3>
-                    <p class="service-description">
-                        Connect your tools, eliminate manual data entry, and build workflows that run 24/7 without human intervention.
-                    </p>
+                    <p class="service-desc">Connect disparate tools into unified pipelines. Eliminate data entry, reduce errors, run 24/7 without supervision.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">🤖</div>
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                        </svg>
+                    </div>
                     <h3 class="service-title">AI Integration</h3>
-                    <p class="service-description">
-                        Deploy intelligent chatbots, automate content generation, and add AI-powered decision making to your processes.
-                    </p>
+                    <p class="service-desc">Deploy intelligent agents for customer support, content generation, and decision automation. Human judgment at machine speed.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">📊</div>
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                        </svg>
+                    </div>
                     <h3 class="service-title">Ecommerce Systems</h3>
-                    <p class="service-description">
-                        16 years of ecommerce experience. Inventory sync, order routing, customer segmentation, and revenue optimization.
-                    </p>
+                    <p class="service-desc">16 years of ecommerce. Inventory sync, order routing, customer segmentation, and revenue optimization at scale.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta">
-        <div class="cta-content">
-            <h2 class="cta-title">Ready to automate?</h2>
-            <p class="cta-description">
-                Let's talk about eliminating the manual work that's slowing your business down.
-            </p>
-            <div class="hero-cta" style="justify-content: center;">
-                <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary btn-large">
-                    Get in Touch <span class="btn-arrow">→</span>
+        <div class="cta-inner">
+            <h2 class="cta-heading">Ready to automate?</h2>
+            <p class="cta-text">Let's eliminate the manual work that's slowing your business down.</p>
+            <div class="cta-buttons">
+                <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary btn-lg">
+                    Get in Touch
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
                 </a>
-                <a href="https://www.linkedin.com/in/carlosmitchell/" class="btn btn-secondary btn-large" target="_blank">
+                <a href="https://www.linkedin.com/in/carlosmitchell/" class="btn btn-ghost btn-lg" target="_blank">
                     Connect on LinkedIn
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <span class="footer-text">© 2026 Carlos Mitchell. Let's automate something.</span>
+    <footer>
+        <div class="footer-inner">
+            <span class="footer-text">© 2026 Carlos Mitchell</span>
             <div class="footer-links">
-                <a href="https://www.linkedin.com/in/carlosmitchell/" class="footer-link" target="_blank">LinkedIn</a>
-                <a href="https://isparkzx.github.io/flowgrammatic/" class="footer-link" target="_blank">FlowGrammatic</a>
-                <a href="mailto:carlos@flowgrammatic.com" class="footer-link">Email</a>
+                <a href="https://www.linkedin.com/in/carlosmitchell/" target="_blank">LinkedIn</a>
+                <a href="https://isparkzx.github.io/flowgrammatic/" target="_blank">FlowGrammatic</a>
+                <a href="mailto:carlos@flowgrammatic.com">Email</a>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Generate animated grid dots
+        const gridPlane = document.getElementById('gridPlane');
+        for (let i = 0; i < 144; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'grid-dot';
+            dot.style.setProperty('--i', i);
+            gridPlane.appendChild(dot);
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card').forEach((card, i) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
