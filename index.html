@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carlos Mitchell — Automation Architect</title>
-    <meta name="description" content="16 years in the trenches. Now I help businesses eliminate manual chaos with intelligent automation.">
+    <meta name="description" content="16 years building systems that eliminate operational chaos.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Satoshi:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'Satoshi';
+            src: url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
+        }
+
         *, *::before, *::after {
             margin: 0;
             padding: 0;
@@ -17,88 +21,129 @@
         }
 
         :root {
-            --bg: #000000;
-            --bg-card: #0a0a0a;
-            --bg-elevated: #111111;
-            --text: #ffffff;
-            --text-secondary: #888888;
-            --text-muted: #444444;
-            --border: #1a1a1a;
-            --glow: #00d4aa;
+            --bg: #09090b;
+            --surface: #111113;
+            --surface-2: #18181b;
+            --border: #27272a;
+            --text: #fafafa;
+            --text-2: #a1a1aa;
+            --text-3: #52525b;
+            --accent: #10b981;
         }
 
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Satoshi', -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        #bg-canvas {
+        /* Subtle gradient orbs */
+        .bg-glow {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* Grain overlay */
+        .grain {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* Navigation */
+        nav {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        /* Floating Pill Nav */
-        nav {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 0;
             z-index: 100;
+            padding: 20px 40px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 8px;
-            padding: 10px 12px 10px 28px;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: 100px;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
         }
 
         .nav-brand {
             font-weight: 600;
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             color: var(--text);
             text-decoration: none;
+            letter-spacing: -0.01em;
         }
 
         .nav-links {
             display: flex;
-            gap: 28px;
-            margin: 0 24px;
+            align-items: center;
+            gap: 32px;
         }
 
         .nav-links a {
             font-size: 0.875rem;
-            color: var(--text-secondary);
+            color: var(--text-2);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.2s;
         }
 
         .nav-links a:hover { color: var(--text); }
 
         .nav-cta {
-            padding: 10px 22px;
+            padding: 8px 16px;
             background: var(--text);
             color: var(--bg);
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
             font-weight: 600;
-            border-radius: 100px;
+            border-radius: 6px;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.2s;
         }
 
         .nav-cta:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 30px rgba(255,255,255,0.15);
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
 
         /* Hero */
@@ -106,302 +151,296 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 120px 24px 80px;
+            padding: 120px 40px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
-        .hero-badge {
+        .hero-eyebrow {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 18px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            border-radius: 100px;
+            gap: 8px;
             font-size: 0.8125rem;
             font-weight: 500;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            animation: fadeIn 1s ease forwards;
+            color: var(--accent);
+            margin-bottom: 24px;
+            animation: fadeIn 0.8s ease forwards;
             opacity: 0;
         }
 
-        .hero-badge svg {
-            width: 14px;
-            height: 14px;
-            color: var(--glow);
+        .hero-eyebrow::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
         }
 
         .hero-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3.5rem, 10vw, 7rem);
-            font-weight: 500;
-            font-style: italic;
-            line-height: 1;
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 400;
+            line-height: 1.1;
             letter-spacing: -0.03em;
-            max-width: 1000px;
-            margin-bottom: 32px;
-            animation: fadeInUp 1s ease 0.15s forwards;
+            max-width: 800px;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease 0.1s forwards;
             opacity: 0;
         }
 
-        .hero-title-fade { opacity: 0.5; }
+        .hero-title em {
+            font-style: italic;
+            color: var(--text-2);
+        }
 
         .hero-description {
-            font-size: 1.0625rem;
-            color: var(--text-secondary);
-            max-width: 560px;
+            font-size: 1.125rem;
+            color: var(--text-2);
+            max-width: 520px;
             line-height: 1.8;
-            margin-bottom: 48px;
-            animation: fadeInUp 1s ease 0.3s forwards;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
             opacity: 0;
         }
 
         .hero-cta {
-            animation: fadeInUp 1s ease 0.45s forwards;
+            display: flex;
+            gap: 16px;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
             opacity: 0;
         }
 
-        .btn-hero {
+        .btn {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding: 18px 36px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            color: var(--text);
+            gap: 8px;
+            padding: 12px 24px;
             font-size: 0.9375rem;
             font-weight: 500;
-            border-radius: 100px;
+            border-radius: 8px;
             text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.25s ease;
         }
 
-        .btn-hero:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: var(--text-muted);
+        .btn-primary {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(0,212,170,0.1);
+            box-shadow: 0 8px 30px rgba(255,255,255,0.12);
         }
 
-        .btn-hero svg {
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--surface-2);
+            border-color: var(--text-3);
+        }
+
+        .btn svg {
             width: 16px;
             height: 16px;
-            transition: transform 0.3s;
         }
-
-        .btn-hero:hover svg { transform: translateX(4px); }
 
         @keyframes fadeIn { to { opacity: 1; } }
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Bento Grid */
-        .bento {
-            position: relative;
-            z-index: 1;
-            padding: 0 24px 120px;
-        }
-
-        .bento-grid {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* Stats */
+        .stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            gap: 1px;
+            background: var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 80px;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
         }
 
-        .bento-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
+        .stat {
+            background: var(--surface);
             padding: 32px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center;
         }
 
-        .bento-card:hover {
-            border-color: var(--text-muted);
-            transform: translateY(-4px);
-        }
-
-        .bento-card.featured {
-            grid-column: span 2;
-        }
-
-        .bento-card.stat-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .bento-eyebrow {
-            font-size: 0.6875rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--glow);
-            margin-bottom: 16px;
-        }
-
-        .bento-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.75rem;
-            font-weight: 500;
-            font-style: italic;
-            line-height: 1.2;
-            margin-bottom: 12px;
-        }
-
-        .bento-text {
-            font-size: 0.9375rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .bento-stat {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
+        .stat-value {
+            font-family: 'Newsreader', serif;
+            font-size: 2.5rem;
             font-weight: 400;
-            line-height: 1;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
-        .bento-stat-label {
+        .stat-label {
             font-size: 0.8125rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            color: var(--text-3);
         }
 
-        .bento-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--bg-elevated);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-        }
-
-        .bento-icon svg {
-            width: 24px;
-            height: 24px;
-            color: var(--text);
-        }
-
-        /* Services */
-        .services {
+        /* Section */
+        section {
             position: relative;
-            z-index: 1;
-            padding: 80px 24px 120px;
-        }
-
-        .services-inner {
+            z-index: 2;
+            padding: 100px 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .services-header {
-            text-align: center;
+        .section-header {
             margin-bottom: 64px;
         }
 
-        .services-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 500;
-            font-style: italic;
+        .section-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            margin-bottom: 16px;
         }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2px;
-            background: var(--border);
-            border-radius: 24px;
-            overflow: hidden;
-        }
-
-        .service-item {
-            background: var(--bg-card);
-            padding: 40px 32px;
-            transition: background 0.3s;
-        }
-
-        .service-item:hover { background: var(--bg-elevated); }
-
-        .service-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
+        .section-title {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 400;
-            color: var(--text-muted);
-            margin-bottom: 24px;
+            line-height: 1.2;
+            max-width: 600px;
         }
 
-        .service-name {
+        /* Process */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .process-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .process-card:hover {
+            border-color: var(--text-3);
+            transform: translateY(-4px);
+        }
+
+        .process-number {
+            font-family: 'Newsreader', serif;
+            font-size: 2rem;
+            color: var(--text-3);
+            margin-bottom: 16px;
+        }
+
+        .process-title {
             font-size: 1.125rem;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+        }
+
+        .process-desc {
+            font-size: 0.9375rem;
+            color: var(--text-2);
+            line-height: 1.7;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--text-3);
+        }
+
+        .service-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--surface-2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .service-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--text);
+        }
+
+        .service-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
 
         .service-desc {
             font-size: 0.875rem;
-            color: var(--text-secondary);
+            color: var(--text-2);
             line-height: 1.7;
         }
 
         /* CTA */
-        .cta {
-            position: relative;
-            z-index: 1;
-            padding: 120px 24px;
+        .cta-section {
             text-align: center;
+            padding: 120px 40px;
         }
 
         .cta-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 500;
-            font-style: italic;
-            line-height: 1.1;
-            margin-bottom: 24px;
+            font-family: 'Newsreader', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            margin-bottom: 16px;
         }
 
         .cta-text {
             font-size: 1.0625rem;
-            color: var(--text-secondary);
-            max-width: 500px;
-            margin: 0 auto 48px;
-            line-height: 1.8;
+            color: var(--text-2);
+            max-width: 480px;
+            margin: 0 auto 32px;
         }
 
         /* Footer */
         footer {
             position: relative;
-            z-index: 1;
-            padding: 32px 24px;
+            z-index: 2;
+            padding: 24px 40px;
             border-top: 1px solid var(--border);
-        }
-
-        .footer-inner {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .footer-text {
             font-size: 0.8125rem;
-            color: var(--text-muted);
+            color: var(--text-3);
         }
 
         .footer-links {
@@ -411,152 +450,145 @@
 
         .footer-links a {
             font-size: 0.8125rem;
-            color: var(--text-secondary);
+            color: var(--text-2);
             text-decoration: none;
-            transition: color 0.3s;
         }
 
         .footer-links a:hover { color: var(--text); }
 
-        @media (max-width: 1024px) {
-            .nav-links { display: none; }
-            .bento-grid { grid-template-columns: 1fr; }
-            .bento-card.featured { grid-column: span 1; }
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 640px) {
-            nav { padding: 8px 8px 8px 20px; }
-            .services-grid { grid-template-columns: 1fr; }
-            .footer-inner { flex-direction: column; gap: 16px; }
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+            .nav-links a:not(.nav-cta) { display: none; }
+            .hero, section { padding-left: 20px; padding-right: 20px; }
+            .stats { grid-template-columns: 1fr; }
+            .process-grid, .services-grid { grid-template-columns: 1fr; }
+            footer { flex-direction: column; gap: 16px; padding: 24px 20px; }
         }
     </style>
 </head>
 <body>
-    <div id="bg-canvas"></div>
+    <div class="bg-glow">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+    <div class="grain"></div>
 
     <nav>
         <a href="#" class="nav-brand">Carlos Mitchell</a>
         <div class="nav-links">
+            <a href="#process">Process</a>
             <a href="#services">Services</a>
-            <a href="#approach">Approach</a>
-            <a href="#contact">Contact</a>
+            <a href="mailto:carlos@flowgrammatic.com" class="nav-cta">Get in Touch</a>
         </div>
-        <a href="mailto:carlos@flowgrammatic.com" class="nav-cta">Get Started</a>
     </nav>
 
-    <section class="hero">
-        <div class="hero-badge">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-            </svg>
-            Available for Projects
-        </div>
+    <div class="hero">
+        <div class="hero-eyebrow">Available for projects</div>
         <h1 class="hero-title">
-            Your Business Runs on<br>
-            <span class="hero-title-fade">Duct Tape & Spreadsheets</span>
+            I build systems that <em>eliminate</em> operational chaos
         </h1>
         <p class="hero-description">
-            16 years in the trenches—running marketing, scaling ecommerce, drowning in the same operational chaos you're facing now. I build systems that actually work.
+            16 years running marketing and scaling ecommerce taught me one thing: most businesses run on duct tape. I fix that with automation that actually works.
         </p>
         <div class="hero-cta">
-            <a href="mailto:carlos@flowgrammatic.com" class="btn-hero">
-                Let's Fix That
+            <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">
+                Start a conversation
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
             </a>
+            <a href="https://isparkzx.github.io/flowgrammatic/" class="btn btn-secondary" target="_blank">
+                View FlowGrammatic
+            </a>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">16+</div>
+                <div class="stat-label">Years experience</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">73%</div>
+                <div class="stat-label">Avg cost reduction</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">10×</div>
+                <div class="stat-label">Faster operations</div>
+            </div>
+        </div>
+    </div>
+
+    <section id="process">
+        <div class="section-header">
+            <div class="section-eyebrow">How I work</div>
+            <h2 class="section-title">From chaos to clarity in four steps</h2>
+        </div>
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-number">01</div>
+                <h3 class="process-title">Audit</h3>
+                <p class="process-desc">I map every process, every handoff, every bottleneck. You'll see exactly where the hours disappear.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">02</div>
+                <h3 class="process-title">Design</h3>
+                <p class="process-desc">Not a band-aid. A real system architecture that handles edge cases and scales with your growth.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">03</div>
+                <h3 class="process-title">Build</h3>
+                <p class="process-desc">Every workflow documented. Your team trained. No black boxes that break when I'm gone.</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">04</div>
+                <h3 class="process-title">Optimize</h3>
+                <p class="process-desc">Add AI where it makes sense—classification, routing, personalization. Practical intelligence.</p>
+            </div>
         </div>
     </section>
 
-    <section class="bento">
-        <div class="bento-grid">
-            <div class="bento-card featured">
-                <div class="bento-eyebrow">The Problem</div>
-                <h2 class="bento-title">You're Not Scaling. You're Just Hiring More People to Do Broken Processes Faster.</h2>
-                <p class="bento-text">Every new customer means more manual data entry. More email forwarding. Your team spends 60% of their time on tasks a machine should handle.</p>
-            </div>
-            <div class="bento-card stat-card">
-                <div class="bento-eyebrow">Experience</div>
-                <div>
-                    <div class="bento-stat">16+</div>
-                    <div class="bento-stat-label">Years in Operations</div>
-                </div>
-            </div>
-            <div class="bento-card">
-                <div class="bento-icon">
+    <section id="services">
+        <div class="section-header">
+            <div class="section-eyebrow">What I build</div>
+            <h2 class="section-title">Systems that run while you sleep</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
                     </svg>
                 </div>
-                <h3 class="bento-title">Workflow Automation</h3>
-                <p class="bento-text">Lead routing, order processing, customer onboarding—any process that follows rules becomes a machine.</p>
+                <h3 class="service-title">Workflow Automation</h3>
+                <p class="service-desc">Lead routing, order processing, customer onboarding—processes that run themselves.</p>
             </div>
-            <div class="bento-card stat-card">
-                <div class="bento-eyebrow">Results</div>
-                <div>
-                    <div class="bento-stat">73%</div>
-                    <div class="bento-stat-label">Avg Cost Reduction</div>
-                </div>
-            </div>
-            <div class="bento-card">
-                <div class="bento-icon">
+            <div class="service-card">
+                <div class="service-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                     </svg>
                 </div>
-                <h3 class="bento-title">AI Integration</h3>
-                <p class="bento-text">Customer support that resolves issues. Data that categorizes automatically. Intelligence where it creates leverage.</p>
+                <h3 class="service-title">AI Integration</h3>
+                <p class="service-desc">Smart support, auto-categorization, content generation. Intelligence where it matters.</p>
             </div>
-            <div class="bento-card">
-                <div class="bento-icon">
+            <div class="service-card">
+                <div class="service-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
                     </svg>
                 </div>
-                <h3 class="bento-title">Data Systems</h3>
-                <p class="bento-text">Systems that sync across channels. Customer data unified. Reports that generate themselves.</p>
+                <h3 class="service-title">Data Systems</h3>
+                <p class="service-desc">Unified customer data, cross-channel sync, self-generating reports.</p>
             </div>
         </div>
     </section>
 
-    <section class="services" id="services">
-        <div class="services-inner">
-            <div class="services-header">
-                <h2 class="services-title">How I Work</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-item">
-                    <div class="service-num">01</div>
-                    <h3 class="service-name">Audit</h3>
-                    <p class="service-desc">I map every process, every handoff, every bottleneck. You'll see exactly where the hours go.</p>
-                </div>
-                <div class="service-item">
-                    <div class="service-num">02</div>
-                    <h3 class="service-name">Design</h3>
-                    <p class="service-desc">Not a band-aid. A real architecture—built on n8n, Make, or custom solutions—that scales.</p>
-                </div>
-                <div class="service-item">
-                    <div class="service-num">03</div>
-                    <h3 class="service-name">Build</h3>
-                    <p class="service-desc">Every workflow documented. Every edge case handled. No black boxes that break when I leave.</p>
-                </div>
-                <div class="service-item">
-                    <div class="service-num">04</div>
-                    <h3 class="service-name">Optimize</h3>
-                    <p class="service-desc">AI for classification, routing, personalization. Practical automation that makes decisions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta" id="contact">
-        <h2 class="cta-title">Stop Patching.<br>Start Building Systems.</h2>
-        <p class="cta-text">
-            A 30-minute call to understand what's broken. If I can help, I'll tell you how. If I can't, I'll tell you that too.
-        </p>
-        <a href="mailto:carlos@flowgrammatic.com" class="btn-hero">
-            Book a Call
+    <section class="cta-section">
+        <h2 class="cta-title">Ready to stop patching?</h2>
+        <p class="cta-text">30 minutes to understand what's broken. If I can help, I'll tell you how. If not, I'll tell you that too.</p>
+        <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">
+            Book a call
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
@@ -564,167 +596,15 @@
     </section>
 
     <footer>
-        <div class="footer-inner">
-            <span class="footer-text">© 2026 Carlos Mitchell · FlowGrammatic</span>
-            <div class="footer-links">
-                <a href="https://www.linkedin.com/in/carlosmitchell/" target="_blank">LinkedIn</a>
-                <a href="https://isparkzx.github.io/flowgrammatic/" target="_blank">FlowGrammatic</a>
-                <a href="mailto:carlos@flowgrammatic.com">Email</a>
-            </div>
+        <span class="footer-text">© 2026 Carlos Mitchell</span>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/carlosmitchell/" target="_blank">LinkedIn</a>
+            <a href="https://isparkzx.github.io/flowgrammatic/" target="_blank">FlowGrammatic</a>
+            <a href="mailto:carlos@flowgrammatic.com">Email</a>
         </div>
     </footer>
 
     <script>
-        // Three.js Finex-style 3D Wave Grid
-        let scene, camera, renderer, particles, geometry;
-        let mouseX = 0, mouseY = 0;
-        let time = 0;
-
-        const container = document.getElementById('bg-canvas');
-        const PARTICLE_COUNT = 15000;
-        const GRID_SIZE = 120;
-        const SEPARATION = 3;
-
-        function init() {
-            // Scene
-            scene = new THREE.Scene();
-            scene.background = new THREE.Color(0x000000);
-
-            // Camera
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 5000);
-            camera.position.z = 150;
-            camera.position.y = 80;
-            camera.lookAt(0, 0, 0);
-
-            // Particles
-            const positions = new Float32Array(PARTICLE_COUNT * 3);
-            const opacities = new Float32Array(PARTICLE_COUNT);
-            const sizes = new Float32Array(PARTICLE_COUNT);
-
-            let i = 0;
-            for (let ix = 0; ix < GRID_SIZE; ix++) {
-                for (let iy = 0; iy < GRID_SIZE; iy++) {
-                    if (i < PARTICLE_COUNT) {
-                        positions[i * 3] = (ix - GRID_SIZE / 2) * SEPARATION;
-                        positions[i * 3 + 1] = 0;
-                        positions[i * 3 + 2] = (iy - GRID_SIZE / 2) * SEPARATION;
-                        opacities[i] = 1;
-                        sizes[i] = 2;
-                        i++;
-                    }
-                }
-            }
-
-            geometry = new THREE.BufferGeometry();
-            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-            geometry.setAttribute('opacity', new THREE.BufferAttribute(opacities, 1));
-            geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-
-            // Shader material for better looking particles
-            const material = new THREE.ShaderMaterial({
-                uniforms: {
-                    time: { value: 0 },
-                    pixelRatio: { value: window.devicePixelRatio }
-                },
-                vertexShader: `
-                    attribute float opacity;
-                    attribute float size;
-                    varying float vOpacity;
-                    uniform float time;
-                    uniform float pixelRatio;
-                    
-                    void main() {
-                        vOpacity = opacity;
-                        
-                        vec3 pos = position;
-                        
-                        // Wave effect
-                        float dist = length(pos.xz);
-                        float wave1 = sin(dist * 0.03 - time * 0.8) * 15.0;
-                        float wave2 = cos(pos.x * 0.02 + pos.z * 0.02 + time * 0.5) * 10.0;
-                        float wave3 = sin(pos.x * 0.04 - time * 0.3) * 8.0;
-                        
-                        pos.y = wave1 + wave2 + wave3;
-                        
-                        // Fade at edges
-                        float edgeFade = 1.0 - smoothstep(100.0, 180.0, dist);
-                        vOpacity = edgeFade * 0.7;
-                        
-                        vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-                        gl_Position = projectionMatrix * mvPosition;
-                        
-                        // Size attenuation
-                        gl_PointSize = size * pixelRatio * (200.0 / -mvPosition.z);
-                    }
-                `,
-                fragmentShader: `
-                    varying float vOpacity;
-                    
-                    void main() {
-                        // Circular point
-                        vec2 center = gl_PointCoord - vec2(0.5);
-                        float dist = length(center);
-                        if (dist > 0.5) discard;
-                        
-                        // Soft edge
-                        float alpha = smoothstep(0.5, 0.2, dist) * vOpacity;
-                        
-                        gl_FragColor = vec4(1.0, 1.0, 1.0, alpha);
-                    }
-                `,
-                transparent: true,
-                depthWrite: false,
-                blending: THREE.AdditiveBlending
-            });
-
-            particles = new THREE.Points(geometry, material);
-            particles.rotation.x = -0.5;
-            particles.rotation.z = 0.3;
-            scene.add(particles);
-
-            // Renderer
-            renderer = new THREE.WebGLRenderer({ antialias: true });
-            renderer.setPixelRatio(window.devicePixelRatio);
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            container.appendChild(renderer.domElement);
-
-            // Events
-            window.addEventListener('resize', onWindowResize);
-            document.addEventListener('mousemove', onMouseMove);
-
-            animate();
-        }
-
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        }
-
-        function onMouseMove(event) {
-            mouseX = (event.clientX - window.innerWidth / 2) * 0.0003;
-            mouseY = (event.clientY - window.innerHeight / 2) * 0.0003;
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-
-            time += 0.01;
-            particles.material.uniforms.time.value = time;
-
-            // Subtle camera movement based on mouse
-            camera.position.x += (mouseX * 30 - camera.position.x) * 0.02;
-            camera.position.y += (80 - mouseY * 20 - camera.position.y) * 0.02;
-            camera.lookAt(0, 0, 0);
-
-            // Slow rotation
-            particles.rotation.z += 0.0003;
-
-            renderer.render(scene, camera);
-        }
-
-        init();
-
         // Scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -735,10 +615,10 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.bento-card, .service-item').forEach((el, i) => {
+        document.querySelectorAll('.process-card, .service-card').forEach((el, i) => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.08}s`;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = `all 0.5s ease ${i * 0.1}s`;
             observer.observe(el);
         });
     </script>
