@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carlos Mitchell — AI Automation & Ecommerce</title>
-    <meta name="description" content="CEO of FlowGrammatic. 16+ years in digital marketing & ecommerce. Building AI automation systems that scale businesses.">
+    <title>Carlos Mitchell — AI Automation Expert</title>
+    <meta name="description" content="CEO of FlowGrammatic. 16+ years transforming businesses through AI automation and digital marketing.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,383 +16,705 @@
         }
 
         :root {
-            --bg-primary: #0a0a0b;
-            --bg-secondary: #111113;
-            --bg-card: #161618;
-            --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --accent: #3b82f6;
-            --accent-glow: rgba(59, 130, 246, 0.3);
-            --border: #27272a;
+            --bg: #fafafa;
+            --bg-white: #ffffff;
+            --text-primary: #0a0a0a;
+            --text-secondary: #525252;
+            --text-muted: #a3a3a3;
+            --accent: #0a0a0a;
+            --accent-light: #f5f5f5;
+            --border: #e5e5e5;
+            --green: #22c55e;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
+            background: var(--bg);
             color: var(--text-primary);
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 60px 24px;
+        /* Nav */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 48px;
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            margin-bottom: 60px;
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.125rem;
+            text-decoration: none;
+            color: var(--text-primary);
         }
 
-        .avatar-wrapper {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 24px;
-        }
-
-        .avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
+        .nav-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
             object-fit: cover;
-            border: 3px solid var(--border);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #262626;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-light);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            padding: 100px 48px 120px;
+            background: var(--bg-white);
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
+            background-size: 24px 24px;
+            opacity: 0.7;
+            mask-image: linear-gradient(to left, rgba(0,0,0,0.4), transparent 70%);
+            -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.4), transparent 70%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text {
             position: relative;
             z-index: 2;
         }
 
-        .avatar-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 160px;
-            height: 160px;
-            background: var(--accent);
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.4;
-            z-index: 1;
-        }
-
-        .name {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: -0.02em;
-        }
-
-        .tagline {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-        }
-
-        .status {
+        .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
-            background: var(--bg-card);
+            padding: 6px 14px;
+            background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 100px;
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
             color: var(--text-secondary);
+            margin-bottom: 32px;
         }
 
         .status-dot {
             width: 8px;
             height: 8px;
-            background: #22c55e;
+            background: var(--green);
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
         }
 
-        /* About Section */
-        .section {
-            margin-bottom: 48px;
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        .hero-title-accent {
+            background: linear-gradient(135deg, #525252, #0a0a0a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 40px;
+            max-width: 480px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-large {
+            padding: 14px 28px;
+            font-size: 1rem;
+        }
+
+        .btn-arrow {
+            margin-left: 8px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover .btn-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Avatar Card */
+        .hero-visual {
+            position: relative;
+            z-index: 2;
+        }
+
+        .avatar-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        .avatar-card-header {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 24px;
+        }
+
+        .avatar-card-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .avatar-card-dot.active {
+            background: var(--green);
+        }
+
+        .avatar-card-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-left: 12px;
+        }
+
+        .avatar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .avatar-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            margin-bottom: 20px;
+        }
+
+        .avatar-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .avatar-role {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            margin-bottom: 16px;
+        }
+
+        .avatar-stats {
+            display: flex;
+            gap: 24px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            width: 100%;
+            justify-content: center;
+        }
+
+        .avatar-stat {
+            text-align: center;
+        }
+
+        .avatar-stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .avatar-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Logos Section */
+        .logos {
+            padding: 60px 48px;
+            border-top: 1px solid var(--border);
+            background: var(--bg-white);
+        }
+
+        .logos-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logos-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .logos-list {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .logo-item {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .logo-item:hover {
+            color: var(--text-primary);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 48px;
+            background: var(--bg);
+        }
+
+        .services-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 16px;
         }
 
         .section-title {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 60px;
+            max-width: 600px;
         }
 
-        .about-text {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
         }
 
-        .about-text strong {
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        /* Cards */
-        .card {
-            background: var(--bg-card);
+        .service-card {
+            background: var(--bg-white);
             border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: block;
+            padding: 32px;
+            transition: all 0.3s;
         }
 
-        .card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--accent-glow);
+        .service-card:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
         }
 
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 12px;
-        }
-
-        .card-icon {
+        .service-icon {
             width: 48px;
             height: 48px;
-            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            background: var(--accent-light);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
+            margin-bottom: 20px;
         }
 
-        .card-title {
+        .service-title {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.25rem;
             font-weight: 600;
-            color: var(--text-primary);
+            margin-bottom: 12px;
         }
 
-        .card-subtitle {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .card-description {
+        .service-description {
             color: var(--text-secondary);
             font-size: 0.9375rem;
+            line-height: 1.6;
         }
 
-        /* Links */
-        .links {
-            display: grid;
-            gap: 12px;
+        /* CTA Section */
+        .cta {
+            padding: 100px 48px;
+            background: var(--bg-white);
+            border-top: 1px solid var(--border);
         }
 
-        .link {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .link:hover {
-            border-color: var(--accent);
-            background: var(--bg-secondary);
-        }
-
-        .link-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .link-icon {
-            font-size: 1.25rem;
-        }
-
-        .link-arrow {
-            color: var(--text-secondary);
-            transition: transform 0.3s ease;
-        }
-
-        .link:hover .link-arrow {
-            transform: translateX(4px);
-            color: var(--accent);
-        }
-
-        /* Stats */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-top: 24px;
-        }
-
-        .stat {
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
-            padding: 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
         }
 
-        .stat-number {
-            font-size: 1.75rem;
+        .cta-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
             font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 4px;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
         }
 
-        .stat-label {
-            font-size: 0.75rem;
+        .cta-description {
+            font-size: 1.125rem;
             color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Footer */
         .footer {
-            text-align: center;
-            padding-top: 40px;
+            padding: 40px 48px;
             border-top: 1px solid var(--border);
-            margin-top: 60px;
+            background: var(--bg);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .footer-text {
             font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-link {
+            font-size: 0.875rem;
             color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--text-primary);
         }
 
         /* Responsive */
-        @media (max-width: 480px) {
-            .name {
-                font-size: 2rem;
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            
-            .stats {
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-description {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .services-grid {
                 grid-template-columns: 1fr;
             }
 
-            .container {
-                padding: 40px 16px;
+            .logos-content {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .logos-list {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav {
+                padding: 16px 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero, .services, .cta {
+                padding: 60px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.25rem;
+            }
+
+            .section-title, .cta-title {
+                font-size: 2rem;
+            }
+
+            .avatar-stats {
+                flex-direction: column;
+                gap: 16px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Hero -->
-        <section class="hero">
-            <div class="avatar-wrapper">
-                <div class="avatar-glow"></div>
-                <img src="carlos-avatar.png" alt="Carlos Mitchell" class="avatar">
-            </div>
-            <h1 class="name">Carlos Mitchell</h1>
-            <p class="tagline">AI Automation · Ecommerce · Digital Marketing</p>
-            <div class="status">
-                <span class="status-dot"></span>
-                Building FlowGrammatic
-            </div>
-        </section>
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="#" class="nav-brand">
+            <img src="carlos-avatar.png" alt="CM" class="nav-logo">
+            CARLOS MITCHELL
+        </a>
+        <div class="nav-links">
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="https://isparkzx.github.io/flowgrammatic/" class="nav-link" target="_blank">FlowGrammatic</a>
+        </div>
+        <div class="nav-cta">
+            <a href="https://www.linkedin.com/in/carlosmitchell/" class="btn btn-secondary" target="_blank">LinkedIn</a>
+            <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">Let's Talk</a>
+        </div>
+    </nav>
 
-        <!-- About -->
-        <section class="section">
-            <h2 class="section-title">About</h2>
-            <p class="about-text">
-                <strong>16+ years</strong> in digital marketing and ecommerce. Currently <strong>Director of Ecommerce & Digital Marketing</strong> at World Emblem International by day, building <strong>FlowGrammatic</strong> — an AI automation agency — by night.
-                <br><br>
-                I help businesses eliminate manual work, automate operations, and scale without hiring. If your team is drowning in repetitive tasks, we should talk.
-            </p>
-        </section>
-
-        <!-- FlowGrammatic Card -->
-        <section class="section">
-            <h2 class="section-title">Current Project</h2>
-            <a href="https://isparkzx.github.io/flowgrammatic/" class="card" target="_blank">
-                <div class="card-header">
-                    <div class="card-icon">⚡</div>
-                    <div>
-                        <div class="card-title">FlowGrammatic</div>
-                        <div class="card-subtitle">AI Automation Agency</div>
-                    </div>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    Available for Projects
                 </div>
-                <p class="card-description">
-                    We build intelligent automation systems that eliminate bottlenecks, slash costs, and scale operations. Workflow automation, AI chatbots, predictive analytics, and custom AI solutions.
+                <h1 class="hero-title">
+                    AI<br>
+                    <span class="hero-title-accent">Automation.</span>
+                </h1>
+                <p class="hero-description">
+                    16+ years transforming businesses through intelligent automation. 
+                    I eliminate bottlenecks, slash operational costs, and build systems that scale.
                 </p>
-            </a>
-
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">16+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">73%</div>
-                    <div class="stat-label">Avg Cost Reduction</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">10×</div>
-                    <div class="stat-label">Faster Operations</div>
+                <div class="hero-cta">
+                    <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary btn-large">
+                        Start a Project <span class="btn-arrow">→</span>
+                    </a>
+                    <a href="https://isparkzx.github.io/flowgrammatic/" class="btn btn-secondary btn-large" target="_blank">
+                        View FlowGrammatic
+                    </a>
                 </div>
             </div>
-        </section>
+            <div class="hero-visual">
+                <div class="avatar-card">
+                    <div class="avatar-card-header">
+                        <span class="avatar-card-dot active"></span>
+                        <span class="avatar-card-dot"></span>
+                        <span class="avatar-card-dot"></span>
+                        <span class="avatar-card-title">Profile</span>
+                    </div>
+                    <div class="avatar-wrapper">
+                        <img src="carlos-avatar.png" alt="Carlos Mitchell" class="avatar-img">
+                        <h2 class="avatar-name">Carlos Mitchell</h2>
+                        <p class="avatar-role">CEO, FlowGrammatic</p>
+                        <div class="avatar-stats">
+                            <div class="avatar-stat">
+                                <div class="avatar-stat-value">16+</div>
+                                <div class="avatar-stat-label">Years</div>
+                            </div>
+                            <div class="avatar-stat">
+                                <div class="avatar-stat-value">73%</div>
+                                <div class="avatar-stat-label">Cost Cut</div>
+                            </div>
+                            <div class="avatar-stat">
+                                <div class="avatar-stat-value">10×</div>
+                                <div class="avatar-stat-label">Faster</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Links -->
-        <section class="section">
-            <h2 class="section-title">Connect</h2>
-            <div class="links">
-                <a href="https://www.linkedin.com/in/carlosmitchell/" class="link" target="_blank">
-                    <div class="link-left">
-                        <span class="link-icon">💼</span>
-                        <span>LinkedIn</span>
-                    </div>
-                    <span class="link-arrow">→</span>
+    <!-- Logos -->
+    <section class="logos">
+        <div class="logos-content">
+            <span class="logos-label">Expertise In</span>
+            <div class="logos-list">
+                <span class="logo-item">n8n</span>
+                <span class="logo-item">Make</span>
+                <span class="logo-item">Zapier</span>
+                <span class="logo-item">OpenAI</span>
+                <span class="logo-item">Shopify</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="services-content">
+            <span class="section-label">What I Do</span>
+            <h2 class="section-title">End-to-end automation that actually works.</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3 class="service-title">Workflow Automation</h3>
+                    <p class="service-description">
+                        Connect your tools, eliminate manual data entry, and build workflows that run 24/7 without human intervention.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3 class="service-title">AI Integration</h3>
+                    <p class="service-description">
+                        Deploy intelligent chatbots, automate content generation, and add AI-powered decision making to your processes.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">Ecommerce Systems</h3>
+                    <p class="service-description">
+                        16 years of ecommerce experience. Inventory sync, order routing, customer segmentation, and revenue optimization.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to automate?</h2>
+            <p class="cta-description">
+                Let's talk about eliminating the manual work that's slowing your business down.
+            </p>
+            <div class="hero-cta" style="justify-content: center;">
+                <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary btn-large">
+                    Get in Touch <span class="btn-arrow">→</span>
                 </a>
-                <a href="https://isparkzx.github.io/flowgrammatic/" class="link" target="_blank">
-                    <div class="link-left">
-                        <span class="link-icon">⚡</span>
-                        <span>FlowGrammatic</span>
-                    </div>
-                    <span class="link-arrow">→</span>
-                </a>
-                <a href="mailto:carlos@flowgrammatic.com" class="link">
-                    <div class="link-left">
-                        <span class="link-icon">✉️</span>
-                        <span>Email Me</span>
-                    </div>
-                    <span class="link-arrow">→</span>
-                </a>
-                <a href="https://calendly.com/carlosmitchell" class="link" target="_blank">
-                    <div class="link-left">
-                        <span class="link-icon">📅</span>
-                        <span>Book a Call</span>
-                    </div>
-                    <span class="link-arrow">→</span>
+                <a href="https://www.linkedin.com/in/carlosmitchell/" class="btn btn-secondary btn-large" target="_blank">
+                    Connect on LinkedIn
                 </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <p class="footer-text">© 2026 Carlos Mitchell. Let's automate something.</p>
-        </footer>
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <span class="footer-text">© 2026 Carlos Mitchell. Let's automate something.</span>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/carlosmitchell/" class="footer-link" target="_blank">LinkedIn</a>
+                <a href="https://isparkzx.github.io/flowgrammatic/" class="footer-link" target="_blank">FlowGrammatic</a>
+                <a href="mailto:carlos@flowgrammatic.com" class="footer-link">Email</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
