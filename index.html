@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Mitchell — AI Automation & Ecommerce</title>
+    <meta name="description" content="CEO of FlowGrammatic. 16+ years in digital marketing & ecommerce. Building AI automation systems that scale businesses.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-card: #161618;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.3);
+            --border: #27272a;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 24px;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border);
+            position: relative;
+            z-index: 2;
+        }
+
+        .avatar-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            background: var(--accent);
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* About Section */
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .about-text {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        /* Links */
+        .links {
+            display: grid;
+            gap: 12px;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .link:hover {
+            border-color: var(--accent);
+            background: var(--bg-secondary);
+        }
+
+        .link-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .link-icon {
+            font-size: 1.25rem;
+        }
+
+        .link-arrow {
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .link:hover .link-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .stat-number {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .name {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 40px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="avatar-wrapper">
+                <div class="avatar-glow"></div>
+                <img src="carlos-avatar.png" alt="Carlos Mitchell" class="avatar">
+            </div>
+            <h1 class="name">Carlos Mitchell</h1>
+            <p class="tagline">AI Automation · Ecommerce · Digital Marketing</p>
+            <div class="status">
+                <span class="status-dot"></span>
+                Building FlowGrammatic
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="section">
+            <h2 class="section-title">About</h2>
+            <p class="about-text">
+                <strong>16+ years</strong> in digital marketing and ecommerce. Currently <strong>Director of Ecommerce & Digital Marketing</strong> at World Emblem International by day, building <strong>FlowGrammatic</strong> — an AI automation agency — by night.
+                <br><br>
+                I help businesses eliminate manual work, automate operations, and scale without hiring. If your team is drowning in repetitive tasks, we should talk.
+            </p>
+        </section>
+
+        <!-- FlowGrammatic Card -->
+        <section class="section">
+            <h2 class="section-title">Current Project</h2>
+            <a href="https://isparkzx.github.io/flowgrammatic/" class="card" target="_blank">
+                <div class="card-header">
+                    <div class="card-icon">⚡</div>
+                    <div>
+                        <div class="card-title">FlowGrammatic</div>
+                        <div class="card-subtitle">AI Automation Agency</div>
+                    </div>
+                </div>
+                <p class="card-description">
+                    We build intelligent automation systems that eliminate bottlenecks, slash costs, and scale operations. Workflow automation, AI chatbots, predictive analytics, and custom AI solutions.
+                </p>
+            </a>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">16+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">73%</div>
+                    <div class="stat-label">Avg Cost Reduction</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">10×</div>
+                    <div class="stat-label">Faster Operations</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Links -->
+        <section class="section">
+            <h2 class="section-title">Connect</h2>
+            <div class="links">
+                <a href="https://www.linkedin.com/in/carlosmitchell/" class="link" target="_blank">
+                    <div class="link-left">
+                        <span class="link-icon">💼</span>
+                        <span>LinkedIn</span>
+                    </div>
+                    <span class="link-arrow">→</span>
+                </a>
+                <a href="https://isparkzx.github.io/flowgrammatic/" class="link" target="_blank">
+                    <div class="link-left">
+                        <span class="link-icon">⚡</span>
+                        <span>FlowGrammatic</span>
+                    </div>
+                    <span class="link-arrow">→</span>
+                </a>
+                <a href="mailto:carlos@flowgrammatic.com" class="link">
+                    <div class="link-left">
+                        <span class="link-icon">✉️</span>
+                        <span>Email Me</span>
+                    </div>
+                    <span class="link-arrow">→</span>
+                </a>
+                <a href="https://calendly.com/carlosmitchell" class="link" target="_blank">
+                    <div class="link-left">
+                        <span class="link-icon">📅</span>
+                        <span>Book a Call</span>
+                    </div>
+                    <span class="link-arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-text">© 2026 Carlos Mitchell. Let's automate something.</p>
+        </footer>
+    </div>
+</body>
+</html>
