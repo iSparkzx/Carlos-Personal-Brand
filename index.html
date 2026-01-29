@@ -10,7 +10,7 @@
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after {
             margin: 0;
@@ -19,22 +19,22 @@
         }
 
         :root {
-            --bg: #030304;
-            --bg-elevated: #0a0a0b;
-            --surface: #0d0d0f;
-            --surface-2: #141416;
-            --surface-3: #1a1a1d;
-            --border: rgba(255,255,255,0.06);
-            --border-light: rgba(255,255,255,0.1);
-            --text: #ffffff;
-            --text-2: #a1a1a6;
-            --text-3: #636366;
-            --accent: #10b981;
-            --accent-glow: rgba(16, 185, 129, 0.5);
-            --cyan: #06b6d4;
-            --purple: #8b5cf6;
-            --blue: #3b82f6;
-            --pink: #ec4899;
+            --bg: #050506;
+            --bg-elevated: #0a0a0c;
+            --surface: #0c0c0e;
+            --surface-2: #111113;
+            --surface-3: #161618;
+            --border: rgba(255,255,255,0.05);
+            --border-light: rgba(255,255,255,0.08);
+            --text: #e8e8e8;
+            --text-2: #888890;
+            --text-3: #55555a;
+            --accent: #059669;
+            --accent-glow: rgba(5, 150, 105, 0.3);
+            --cyan: #0891b2;
+            --purple: #7c3aed;
+            --blue: #2563eb;
+            --pink: #be185d;
         }
 
         html { scroll-behavior: smooth; }
@@ -62,15 +62,15 @@
         .orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.5;
+            filter: blur(120px);
+            opacity: 0.25;
             animation: float 20s ease-in-out infinite;
         }
 
         .orb-1 {
             width: 600px;
             height: 600px;
-            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            background: var(--accent);
             top: -200px;
             left: -100px;
             animation-delay: 0s;
@@ -80,31 +80,34 @@
         .orb-2 {
             width: 500px;
             height: 500px;
-            background: linear-gradient(135deg, var(--purple), var(--pink));
+            background: var(--purple);
             top: 50%;
             right: -150px;
             animation-delay: -5s;
             animation-duration: 30s;
+            opacity: 0.15;
         }
 
         .orb-3 {
             width: 400px;
             height: 400px;
-            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            background: var(--cyan);
             bottom: -100px;
             left: 30%;
             animation-delay: -10s;
             animation-duration: 22s;
+            opacity: 0.15;
         }
 
         .orb-4 {
             width: 300px;
             height: 300px;
-            background: linear-gradient(135deg, var(--accent), var(--purple));
+            background: var(--accent);
             top: 40%;
             left: 10%;
             animation-delay: -7s;
             animation-duration: 28s;
+            opacity: 0.1;
         }
 
         @keyframes float {
@@ -132,9 +135,9 @@
 
         .particle {
             position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(255,255,255,0.3);
+            width: 1px;
+            height: 1px;
+            background: rgba(255,255,255,0.15);
             border-radius: 50%;
             animation: drift linear infinite;
         }
@@ -226,10 +229,12 @@
         }
 
         .nav-name {
+            font-family: 'Outfit', sans-serif;
             font-weight: 600;
-            font-size: 0.9375rem;
+            font-size: 1rem;
             color: var(--text);
-            letter-spacing: -0.01em;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
         }
 
         .nav-links {
@@ -349,8 +354,9 @@
             position: absolute;
             inset: -6px;
             border-radius: 50%;
-            background: conic-gradient(from 0deg, var(--accent), var(--cyan), var(--purple), var(--pink), var(--accent));
-            animation: spin 6s linear infinite;
+            background: conic-gradient(from 0deg, var(--accent), var(--surface-3), var(--accent));
+            animation: spin 8s linear infinite;
+            opacity: 0.8;
         }
 
         @keyframes spin {
@@ -377,16 +383,16 @@
         /* Glowing pulse behind avatar */
         .hero-avatar-glow {
             position: absolute;
-            inset: -40px;
+            inset: -30px;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
             border-radius: 50%;
-            animation: glowPulse 3s ease-in-out infinite;
+            animation: glowPulse 4s ease-in-out infinite;
             z-index: -1;
         }
 
         @keyframes glowPulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.1); }
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.05); }
         }
 
         /* Title with letter animation */
@@ -428,12 +434,12 @@
 
         /* Animated gradient text */
         .gradient-text {
-            background: linear-gradient(90deg, var(--accent), var(--cyan), var(--purple), var(--accent));
-            background-size: 300% 100%;
+            background: linear-gradient(90deg, var(--text), var(--accent), var(--text));
+            background-size: 200% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradientMove 5s ease-in-out infinite;
+            animation: gradientMove 6s ease-in-out infinite;
         }
 
         @keyframes gradientMove {
@@ -499,14 +505,14 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent) 0%, #059669 100%);
+            background: var(--accent);
             color: white;
-            box-shadow: 0 4px 24px var(--accent-glow), inset 0 1px 0 rgba(255,255,255,0.2);
+            box-shadow: 0 2px 12px var(--accent-glow);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px var(--accent-glow), inset 0 1px 0 rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--accent-glow);
         }
 
         .btn-secondary {
@@ -594,10 +600,7 @@
             display: inline-block;
         }
 
-        .stat:nth-child(1) .stat-value { color: var(--accent); }
-        .stat:nth-child(2) .stat-value { color: var(--cyan); }
-        .stat:nth-child(3) .stat-value { color: var(--purple); }
-        .stat:nth-child(4) .stat-value { color: var(--pink); }
+        .stat-value { color: var(--text); }
 
         .stat-label {
             font-size: 0.8125rem;
@@ -793,13 +796,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--cyan) 100%);
+            background: var(--accent);
             border-radius: 12px;
             font-family: 'Playfair Display', serif;
             font-size: 1.25rem;
             font-weight: 500;
             color: white;
-            box-shadow: 0 4px 20px var(--accent-glow);
         }
 
         .solution-content {
@@ -844,8 +846,8 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--cyan), var(--purple));
+            height: 1px;
+            background: var(--accent);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.5s ease;
@@ -890,10 +892,9 @@
         }
 
         .service-card:hover .service-icon {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--cyan) 100%);
+            background: var(--accent);
             border-color: transparent;
-            box-shadow: 0 8px 30px var(--accent-glow);
-            transform: scale(1.1) rotate(-5deg);
+            transform: scale(1.05);
         }
 
         .service-icon svg {
@@ -1041,11 +1042,8 @@
             font-family: 'Playfair Display', serif;
             font-size: 6rem;
             line-height: 1;
-            background: linear-gradient(135deg, var(--accent), var(--cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            opacity: 0.3;
+            color: var(--accent);
+            opacity: 0.2;
         }
 
         .testimonial-text {
@@ -1067,15 +1065,15 @@
         .testimonial-avatar {
             width: 52px;
             height: 52px;
-            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            background: var(--surface-3);
+            border: 1px solid var(--border-light);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
             font-size: 1rem;
-            color: white;
-            box-shadow: 0 4px 20px var(--accent-glow);
+            color: var(--text-2);
         }
 
         .testimonial-info h4 {
@@ -1145,15 +1143,15 @@
             flex-shrink: 0;
             width: 32px;
             height: 32px;
-            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            background: var(--surface-3);
+            border: 1px solid var(--border-light);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.8125rem;
             font-weight: 700;
-            color: white;
-            box-shadow: 0 4px 12px var(--accent-glow);
+            color: var(--accent);
         }
 
         .faq-answer {
@@ -1182,16 +1180,16 @@
             top: -200px;
             left: 50%;
             transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
+            width: 600px;
+            height: 600px;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
-            opacity: 0.4;
-            animation: ctaGlow 4s ease-in-out infinite;
+            opacity: 0.2;
+            animation: ctaGlow 6s ease-in-out infinite;
         }
 
         @keyframes ctaGlow {
-            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.4; }
-            50% { transform: translateX(-50%) scale(1.2); opacity: 0.6; }
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.2; }
+            50% { transform: translateX(-50%) scale(1.1); opacity: 0.3; }
         }
 
         .cta-content {
@@ -1699,16 +1697,16 @@
         // Create floating particles
         function createParticles() {
             const container = document.getElementById('particles');
-            const particleCount = 50;
+            const particleCount = 30;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDuration = (Math.random() * 20 + 15) + 's';
+                particle.style.animationDuration = (Math.random() * 25 + 20) + 's';
                 particle.style.animationDelay = (Math.random() * 20) + 's';
-                particle.style.opacity = Math.random() * 0.5 + 0.2;
-                particle.style.width = (Math.random() * 2 + 1) + 'px';
+                particle.style.opacity = Math.random() * 0.2 + 0.05;
+                particle.style.width = (Math.random() * 1.5 + 0.5) + 'px';
                 particle.style.height = particle.style.width;
                 container.appendChild(particle);
             }
