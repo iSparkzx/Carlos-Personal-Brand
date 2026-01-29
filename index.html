@@ -7,7 +7,7 @@
     <meta name="description" content="16 years in the trenches. Now I help businesses eliminate manual chaos with intelligent automation.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after {
             margin: 0;
@@ -16,23 +16,21 @@
         }
 
         :root {
-            --bg: #0a0a0a;
-            --bg-elevated: #141414;
-            --bg-card: #1a1a1a;
-            --text: #f5f5f5;
-            --text-secondary: #888;
-            --text-muted: #555;
-            --accent: #f5f5f5;
-            --border: #262626;
-            --gradient: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            --bg: #09090b;
+            --bg-elevated: #18181b;
+            --bg-card: #1f1f23;
+            --text: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #52525b;
+            --border: #27272a;
+            --accent: #22c55e;
+            --accent-dim: rgba(34, 197, 94, 0.1);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Outfit', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
@@ -40,140 +38,71 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Grain overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 1000;
-        }
+        .mono { font-family: 'Geist Mono', monospace; }
 
-        /* Navigation */
+        /* Nav */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 100;
-            padding: 24px 48px;
+            padding: 16px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            mix-blend-mode: difference;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
         }
 
         .nav-brand {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 600;
-            font-size: 0.875rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 12px;
             text-decoration: none;
+            color: var(--text);
+        }
+
+        .nav-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            object-fit: cover;
+            filter: grayscale(100%);
+        }
+
+        .nav-name {
+            font-weight: 600;
+            font-size: 0.9375rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 48px;
+            align-items: center;
+            gap: 32px;
         }
 
         .nav-links a {
             font-size: 0.875rem;
-            color: var(--text);
+            color: var(--text-secondary);
             text-decoration: none;
-            opacity: 0.6;
-            transition: opacity 0.3s;
+            transition: color 0.2s;
         }
 
-        .nav-links a:hover {
-            opacity: 1;
-        }
-
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            position: relative;
-        }
-
-        .hero-content {
-            padding: 180px 80px 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-label {
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            animation: fadeIn 1s ease forwards;
-            opacity: 0;
-        }
-
-        .hero-label::before {
-            content: '';
-            width: 40px;
-            height: 1px;
-            background: var(--text-secondary);
-        }
-
-        .hero-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(3.5rem, 6vw, 5rem);
-            font-weight: 400;
-            line-height: 1.1;
-            margin-bottom: 32px;
-            animation: fadeInUp 1s ease 0.2s forwards;
-            opacity: 0;
-        }
-
-        .hero-title em {
-            font-style: italic;
-        }
-
-        .hero-description {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            max-width: 480px;
-            line-height: 1.8;
-            margin-bottom: 48px;
-            animation: fadeInUp 1s ease 0.4s forwards;
-            opacity: 0;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 24px;
-            animation: fadeInUp 1s ease 0.6s forwards;
-            opacity: 0;
-        }
+        .nav-links a:hover { color: var(--text); }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            padding: 16px 32px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.9375rem;
+            gap: 8px;
+            padding: 10px 20px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.875rem;
             font-weight: 500;
-            border-radius: 0;
+            border-radius: 8px;
             text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             border: none;
         }
@@ -184,185 +113,380 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(255,255,255,0.1);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 40px rgba(255,255,255,0.15);
         }
 
-        .btn-outline {
+        .btn-ghost {
             background: transparent;
             color: var(--text);
             border: 1px solid var(--border);
         }
 
-        .btn-outline:hover {
-            border-color: var(--text);
-        }
+        .btn-ghost:hover { border-color: var(--text-muted); }
 
         .btn svg {
-            width: 16px;
-            height: 16px;
-            transition: transform 0.3s;
+            width: 14px;
+            height: 14px;
+            transition: transform 0.2s;
         }
 
-        .btn:hover svg {
-            transform: translateX(4px);
-        }
+        .btn:hover svg { transform: translateX(2px); }
 
-        /* Hero Image */
-        .hero-image-container {
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            padding: 140px 48px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             position: relative;
             overflow: hidden;
         }
 
-        .hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%) contrast(1.1);
-            animation: scaleIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            transform: scale(1.1);
-        }
-
-        .hero-image-overlay {
+        /* Animated Grid Background */
+        .grid-bg {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, var(--bg) 0%, transparent 30%);
+            overflow: hidden;
+            opacity: 0.4;
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
+        .grid-lines {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%);
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
+        .grid-glow {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(ellipse at center, var(--accent-dim) 0%, transparent 70%);
+            animation: glow-pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(1); }
+            50% { opacity: 0.6; transform: translateX(-50%) scale(1.1); }
+        }
+
+        /* Floating Nodes */
+        .nodes {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 20s linear infinite;
+        }
+
+        .node::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: pulse-node 2s ease-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+        }
+
+        @keyframes pulse-node {
+            0% { transform: scale(1); opacity: 0.3; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px 6px 8px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            animation: fadeInDown 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease 0.1s forwards;
+            opacity: 0;
+        }
+
+        .hero-title-dim { color: var(--text-muted); }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes scaleIn {
-            to { transform: scale(1); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Stats Bar */
-        .stats-bar {
+        /* Terminal Card */
+        .terminal-wrapper {
+            margin-top: 80px;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .terminal {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .terminal-dot.red { background: #ef4444; }
+        .terminal-dot.yellow { background: #eab308; }
+        .terminal-dot.green { background: #22c55e; }
+
+        .terminal-title {
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .terminal-body {
+            padding: 20px;
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.8125rem;
+            line-height: 1.8;
+        }
+
+        .terminal-line {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .terminal-prompt { color: var(--accent); }
+        .terminal-cmd { color: var(--text); }
+        .terminal-output { color: var(--text-secondary); padding-left: 24px; }
+        .terminal-success { color: var(--accent); }
+
+        /* Stats */
+        .stats {
             padding: 80px 48px;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
 
-        .stats-inner {
-            max-width: 1400px;
+        .stats-grid {
+            max-width: 1000px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 48px;
         }
 
-        .stat {
-            text-align: center;
-        }
+        .stat { text-align: center; }
 
         .stat-value {
-            font-family: 'Instrument Serif', serif;
-            font-size: 3.5rem;
-            font-weight: 400;
-            margin-bottom: 8px;
-            line-height: 1;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, var(--text), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .stat-label {
             font-size: 0.8125rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
         }
 
-        /* Problem/Solution Section */
-        .problem-section {
-            padding: 140px 48px;
-            max-width: 1400px;
+        /* Problem/Solution */
+        .problem {
+            padding: 120px 48px;
+        }
+
+        .problem-inner {
+            max-width: 1200px;
             margin: 0 auto;
-        }
-
-        .section-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 120px;
-            align-items: start;
+            gap: 100px;
         }
 
         .section-label {
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
+            font-size: 0.6875rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 24px;
         }
 
         .section-label::before {
             content: '';
-            width: 24px;
-            height: 1px;
-            background: var(--text-secondary);
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 2px;
         }
 
         .problem-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: 2.75rem;
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 32px;
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
         }
 
         .problem-text {
-            font-size: 1.0625rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             line-height: 1.9;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .solution-list {
             list-style: none;
-        }
-
-        .solution-list li {
-            padding: 24px 0;
-            border-bottom: 1px solid var(--border);
             display: flex;
-            gap: 20px;
-            align-items: flex-start;
+            flex-direction: column;
+            gap: 16px;
         }
 
-        .solution-number {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            flex-shrink: 0;
-            width: 40px;
+        .solution-item {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .solution-item:hover {
+            border-color: var(--text-muted);
+            transform: translateX(4px);
+        }
+
+        .solution-num {
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent);
+            padding: 4px 8px;
+            background: var(--accent-dim);
+            border-radius: 4px;
+            height: fit-content;
         }
 
         .solution-content h3 {
-            font-size: 1.125rem;
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .solution-content p {
-            font-size: 0.9375rem;
+            font-size: 0.875rem;
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         /* Services */
         .services {
-            padding: 140px 48px;
+            padding: 120px 48px;
             background: var(--bg-elevated);
         }
 
         .services-inner {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -370,159 +494,125 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 80px;
+            margin-bottom: 64px;
         }
 
         .services-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
-            font-weight: 400;
-            max-width: 600px;
-            line-height: 1.15;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            max-width: 500px;
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            background: var(--border);
+            gap: 24px;
         }
 
         .service-card {
             background: var(--bg);
-            padding: 48px;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            overflow: hidden;
         }
 
-        .service-card::after {
+        .service-card::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 48px;
-            right: 48px;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 2px;
-            background: var(--text);
+            background: linear-gradient(90deg, var(--accent), transparent);
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.4s;
         }
 
         .service-card:hover {
-            background: var(--bg-card);
+            transform: translateY(-4px);
+            border-color: var(--text-muted);
         }
 
-        .service-card:hover::after {
-            transform: scaleX(1);
-        }
+        .service-card:hover::before { transform: scaleX(1); }
 
         .service-icon {
             width: 48px;
             height: 48px;
-            margin-bottom: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 24px;
         }
 
         .service-icon svg {
-            width: 32px;
-            height: 32px;
-            color: var(--text);
-            stroke-width: 1.5;
+            width: 24px;
+            height: 24px;
+            color: var(--accent);
         }
 
         .service-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 16px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
         }
 
         .service-desc {
             font-size: 0.9375rem;
             color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        /* Testimonial */
-        .testimonial {
-            padding: 140px 48px;
-            border-top: 1px solid var(--border);
-        }
-
-        .testimonial-inner {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .testimonial-quote {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            font-weight: 400;
-            line-height: 1.4;
-            margin-bottom: 48px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .testimonial-name {
-            font-weight: 600;
-        }
-
-        .testimonial-role {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
+            line-height: 1.7;
         }
 
         /* CTA */
         .cta {
-            padding: 160px 48px;
-            background: var(--bg-elevated);
+            padding: 140px 48px;
             text-align: center;
+            position: relative;
         }
 
         .cta-inner {
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .cta-title {
-            font-family: 'Instrument Serif', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 400;
-            margin-bottom: 24px;
-            line-height: 1.1;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
 
         .cta-text {
-            font-size: 1.125rem;
+            font-size: 1.0625rem;
             color: var(--text-secondary);
-            margin-bottom: 48px;
+            margin-bottom: 40px;
             line-height: 1.8;
         }
 
         .cta-buttons {
             display: flex;
             justify-content: center;
-            gap: 24px;
+            gap: 16px;
         }
 
         /* Footer */
         footer {
-            padding: 48px;
+            padding: 32px 48px;
             border-top: 1px solid var(--border);
         }
 
         .footer-inner {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -536,143 +626,138 @@
 
         .footer-links {
             display: flex;
-            gap: 32px;
+            gap: 24px;
         }
 
         .footer-links a {
             font-size: 0.8125rem;
             color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.2s;
         }
 
-        .footer-links a:hover {
-            color: var(--text);
-        }
+        .footer-links a:hover { color: var(--text); }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            nav { padding: 20px 24px; }
+            nav { padding: 16px 24px; }
             .nav-links { display: none; }
-            .hero {
-                grid-template-columns: 1fr;
-                min-height: auto;
-            }
-            .hero-content {
-                padding: 140px 24px 80px;
-                order: 2;
-            }
-            .hero-image-container {
-                height: 60vh;
-                order: 1;
-            }
-            .hero-image-overlay {
-                background: linear-gradient(to top, var(--bg) 0%, transparent 50%);
-            }
-            .stats-inner {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .section-grid {
-                grid-template-columns: 1fr;
-                gap: 64px;
-            }
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .services-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 24px;
-            }
-            .problem-section, .services, .testimonial, .cta {
-                padding: 80px 24px;
-            }
+            .hero, .problem, .services, .cta { padding: 80px 24px; }
+            .stats { padding: 60px 24px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+            .problem-inner { grid-template-columns: 1fr; gap: 64px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .services-header { flex-direction: column; align-items: flex-start; gap: 24px; }
         }
 
         @media (max-width: 640px) {
-            .stats-inner {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-            .hero-cta, .cta-buttons {
-                flex-direction: column;
-            }
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            .footer-inner {
-                flex-direction: column;
-                gap: 24px;
-                text-align: center;
-            }
+            .stats-grid { grid-template-columns: 1fr; }
+            .hero-cta, .cta-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="#" class="nav-brand">Carlos Mitchell</a>
+        <a href="#" class="nav-brand">
+            <img src="carlos-mitchell.jpg" alt="Carlos Mitchell" class="nav-avatar">
+            <span class="nav-name">Carlos Mitchell</span>
+        </a>
         <div class="nav-links">
             <a href="#approach">Approach</a>
             <a href="#services">Services</a>
-            <a href="mailto:carlos@flowgrammatic.com">Contact</a>
+            <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">
+                Let's Talk
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
         </div>
     </nav>
 
     <section class="hero">
+        <div class="grid-bg">
+            <div class="grid-lines"></div>
+            <div class="grid-glow"></div>
+        </div>
+        <div class="nodes" id="nodes"></div>
+
         <div class="hero-content">
-            <div class="hero-label">Automation Architect</div>
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Available for Projects
+            </div>
             <h1 class="hero-title">
-                Your business runs on <em>duct tape</em> and spreadsheets.<br>
-                I fix that.
+                Your business runs on <span class="hero-title-dim">duct tape</span> and spreadsheets.<br>I fix that.
             </h1>
             <p class="hero-description">
                 16 years in the trenches—running marketing, scaling ecommerce, drowning in the same operational chaos you're facing now. I learned to build systems that actually work. Now I build them for businesses like yours.
             </p>
             <div class="hero-cta">
                 <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">
-                    Let's Talk
+                    Start a Project
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                     </svg>
                 </a>
-                <a href="https://isparkzx.github.io/flowgrammatic/" class="btn btn-outline" target="_blank">
-                    See FlowGrammatic
+                <a href="https://isparkzx.github.io/flowgrammatic/" class="btn btn-ghost" target="_blank">
+                    View FlowGrammatic
                 </a>
             </div>
-        </div>
-        <div class="hero-image-container">
-            <img src="carlos-mitchell.jpg" alt="Carlos Mitchell" class="hero-image">
-            <div class="hero-image-overlay"></div>
+
+            <div class="terminal-wrapper">
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <span class="terminal-dot red"></span>
+                        <span class="terminal-dot yellow"></span>
+                        <span class="terminal-dot green"></span>
+                        <span class="terminal-title">automation.sh</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-cmd">flowgrammatic analyze --process="lead_routing"</span>
+                        </div>
+                        <div class="terminal-output">→ Found 12 manual handoffs</div>
+                        <div class="terminal-output">→ Est. 23 hrs/week wasted</div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-cmd">flowgrammatic automate --deploy</span>
+                        </div>
+                        <div class="terminal-output terminal-success">✓ Workflow deployed. Zero human intervention required.</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="stats-bar">
-        <div class="stats-inner">
+    <section class="stats">
+        <div class="stats-grid">
             <div class="stat">
                 <div class="stat-value">16+</div>
-                <div class="stat-label">Years in Operations</div>
+                <div class="stat-label">Years Experience</div>
             </div>
             <div class="stat">
                 <div class="stat-value">73%</div>
-                <div class="stat-label">Average Cost Reduction</div>
+                <div class="stat-label">Avg Cost Cut</div>
             </div>
             <div class="stat">
                 <div class="stat-value">10×</div>
-                <div class="stat-label">Operational Speed</div>
+                <div class="stat-label">Faster Ops</div>
             </div>
             <div class="stat">
                 <div class="stat-value">0</div>
-                <div class="stat-label">Human Babysitting Required</div>
+                <div class="stat-label">Babysitting</div>
             </div>
         </div>
     </section>
 
-    <section class="problem-section" id="approach">
-        <div class="section-grid">
+    <section class="problem" id="approach">
+        <div class="problem-inner">
             <div>
                 <div class="section-label">The Problem</div>
-                <h2 class="problem-title">You're not scaling. You're just hiring more people to do the same broken processes faster.</h2>
+                <h2 class="problem-title">You're not scaling. You're hiring more people to do broken processes faster.</h2>
                 <p class="problem-text">
                     Every new customer means more manual data entry. More email forwarding. More "let me check on that and get back to you." Your team spends 60% of their time on tasks a machine should handle.
                 </p>
@@ -680,38 +765,38 @@
                     You've tried Zapier. Maybe a VA. Maybe three. The workflows break. Nobody knows how they work. And you're still the bottleneck.
                 </p>
                 <p class="problem-text">
-                    <strong>I've been there.</strong> Director of Ecommerce at a company processing thousands of orders daily. I built the systems that got us out of that chaos. Now I do it for others.
+                    <strong>I've been there.</strong> Director of Ecommerce at a company processing thousands of orders daily. I built the systems that got us out of that chaos.
                 </p>
             </div>
             <div>
                 <div class="section-label">The Fix</div>
                 <ul class="solution-list">
-                    <li>
-                        <span class="solution-number">01</span>
+                    <li class="solution-item">
+                        <span class="solution-num">01</span>
                         <div class="solution-content">
                             <h3>Audit the Chaos</h3>
                             <p>I map every process, every handoff, every "we've always done it this way." You'll see exactly where the hours go.</p>
                         </div>
                     </li>
-                    <li>
-                        <span class="solution-number">02</span>
+                    <li class="solution-item">
+                        <span class="solution-num">02</span>
                         <div class="solution-content">
                             <h3>Design the System</h3>
                             <p>Not a band-aid. A real architecture—built on n8n, Make, or custom solutions—that handles exceptions and scales.</p>
                         </div>
                     </li>
-                    <li>
-                        <span class="solution-number">03</span>
+                    <li class="solution-item">
+                        <span class="solution-num">03</span>
                         <div class="solution-content">
                             <h3>Build It Right</h3>
                             <p>Every workflow documented. Every edge case handled. Your team trained. No black boxes that break when I leave.</p>
                         </div>
                     </li>
-                    <li>
-                        <span class="solution-number">04</span>
+                    <li class="solution-item">
+                        <span class="solution-num">04</span>
                         <div class="solution-content">
                             <h3>Add Intelligence</h3>
-                            <p>Where it makes sense—AI for classification, routing, personalization. Not gimmicks. Practical automation that makes decisions.</p>
+                            <p>AI for classification, routing, personalization. Not gimmicks—practical automation that makes decisions.</p>
                         </div>
                     </li>
                 </ul>
@@ -723,7 +808,7 @@
         <div class="services-inner">
             <div class="services-header">
                 <h2 class="services-title">Systems I Build</h2>
-                <a href="mailto:carlos@flowgrammatic.com" class="btn btn-outline">
+                <a href="mailto:carlos@flowgrammatic.com" class="btn btn-ghost">
                     Discuss Your Project
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -733,49 +818,31 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
                         </svg>
                     </div>
                     <h3 class="service-title">Workflow Automation</h3>
-                    <p class="service-desc">
-                        Lead routing, order processing, invoice generation, customer onboarding—any process that follows rules becomes a machine that runs itself.
-                    </p>
+                    <p class="service-desc">Lead routing, order processing, invoice generation, customer onboarding—any process that follows rules becomes a machine that runs itself.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
                         </svg>
                     </div>
                     <h3 class="service-title">AI-Powered Operations</h3>
-                    <p class="service-desc">
-                        Customer support that actually resolves issues. Content that writes itself. Data that categorizes automatically. Intelligence where it creates leverage.
-                    </p>
+                    <p class="service-desc">Customer support that resolves issues. Content that writes itself. Data that categorizes automatically. Intelligence where it creates leverage.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
                         </svg>
                     </div>
                     <h3 class="service-title">Data Infrastructure</h3>
-                    <p class="service-desc">
-                        Systems that sync inventory across 12 channels. Customer data unified in one place. Reports that generate themselves. Your single source of truth.
-                    </p>
+                    <p class="service-desc">Systems that sync across channels. Customer data unified in one place. Reports that generate themselves. Your single source of truth.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonial">
-        <div class="testimonial-inner">
-            <blockquote class="testimonial-quote">
-                "We were drowning in manual work before Carlos came in. He didn't just automate our processes—he rebuilt how we think about operations entirely. Our team went from firefighting to actually growing the business."
-            </blockquote>
-            <div class="testimonial-author">
-                <span class="testimonial-name">Operations Director</span>
-                <span class="testimonial-role">Mid-Market Ecommerce Brand</span>
             </div>
         </div>
     </section>
@@ -793,7 +860,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                     </svg>
                 </a>
-                <a href="https://www.linkedin.com/in/carlosmitchell/" class="btn btn-outline" target="_blank">
+                <a href="https://www.linkedin.com/in/carlosmitchell/" class="btn btn-ghost" target="_blank">
                     Connect on LinkedIn
                 </a>
             </div>
@@ -802,7 +869,7 @@
 
     <footer>
         <div class="footer-inner">
-            <span class="footer-text">© 2026 Carlos Mitchell. FlowGrammatic.</span>
+            <span class="footer-text">© 2026 Carlos Mitchell · FlowGrammatic</span>
             <div class="footer-links">
                 <a href="https://www.linkedin.com/in/carlosmitchell/" target="_blank">LinkedIn</a>
                 <a href="https://isparkzx.github.io/flowgrammatic/" target="_blank">FlowGrammatic</a>
@@ -812,12 +879,21 @@
     </footer>
 
     <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
+        // Floating nodes animation
+        const nodesContainer = document.getElementById('nodes');
+        function createNode() {
+            const node = document.createElement('div');
+            node.className = 'node';
+            node.style.left = Math.random() * 100 + '%';
+            node.style.animationDuration = (15 + Math.random() * 10) + 's';
+            node.style.animationDelay = Math.random() * 5 + 's';
+            nodesContainer.appendChild(node);
+            setTimeout(() => node.remove(), 25000);
+        }
+        for (let i = 0; i < 5; i++) setTimeout(createNode, i * 1000);
+        setInterval(createNode, 3000);
 
+        // Scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -825,30 +901,13 @@
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '-50px' });
 
-        // Animate stats
-        document.querySelectorAll('.stat').forEach((stat, i) => {
-            stat.style.opacity = '0';
-            stat.style.transform = 'translateY(20px)';
-            stat.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.1}s`;
-            observer.observe(stat);
-        });
-
-        // Animate service cards
-        document.querySelectorAll('.service-card').forEach((card, i) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.15}s`;
-            observer.observe(card);
-        });
-
-        // Animate solution items
-        document.querySelectorAll('.solution-list li').forEach((item, i) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
-            item.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.1}s`;
-            observer.observe(item);
+        document.querySelectorAll('.stat, .service-card, .solution-item').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = `all 0.5s cubic-bezier(0.4, 0, 0.2, 1) ${i * 0.1}s`;
+            observer.observe(el);
         });
     </script>
 </body>
