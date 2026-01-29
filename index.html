@@ -36,7 +36,6 @@
             overflow-x: hidden;
         }
 
-        /* Animated mesh gradient background */
         .bg-mesh {
             position: fixed;
             inset: 0;
@@ -77,7 +76,6 @@
             mask-image: radial-gradient(ellipse 80% 80% at 50% 30%, black 20%, transparent 70%);
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -137,10 +135,7 @@
             font-weight: 600;
             border-radius: 6px;
             text-decoration: none;
-            transition: all 0.2s;
         }
-
-        .nav-cta:hover { opacity: 0.9; }
 
         /* Hero */
         .hero {
@@ -187,12 +182,6 @@
             height: 8px;
             background: var(--accent);
             border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
         }
 
         .hero-title {
@@ -201,7 +190,7 @@
             font-weight: 400;
             line-height: 1.1;
             letter-spacing: -0.02em;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             animation: fadeInUp 0.6s ease 0.15s forwards;
             opacity: 0;
         }
@@ -214,8 +203,8 @@
         .hero-description {
             font-size: 1.125rem;
             color: var(--text-2);
-            max-width: 600px;
-            line-height: 1.75;
+            max-width: 640px;
+            line-height: 1.8;
             margin-bottom: 36px;
             animation: fadeInUp 0.6s ease 0.25s forwards;
             opacity: 0;
@@ -232,7 +221,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 24px;
+            padding: 14px 28px;
             font-size: 0.9375rem;
             font-weight: 500;
             border-radius: 8px;
@@ -272,120 +261,57 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Bento Grid */
-        .bento {
+        /* Stats */
+        .stats {
             position: relative;
             z-index: 2;
             padding: 0 32px 80px;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        .bento-grid {
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-
-        .bento-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
+            gap: 1px;
+            background: var(--border);
             border-radius: 16px;
-            padding: 24px;
-            transition: all 0.3s ease;
+            overflow: hidden;
         }
 
-        .bento-card:hover {
-            border-color: var(--text-3);
-            transform: translateY(-2px);
+        .stat {
+            background: var(--surface);
+            padding: 32px 24px;
+            text-align: center;
         }
 
-        .bento-card.span-2 {
-            grid-column: span 2;
-        }
-
-        .bento-eyebrow {
-            font-size: 0.6875rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 12px;
-        }
-
-        .bento-stat {
+        .stat-value {
             font-family: 'Newsreader', serif;
             font-size: 2.5rem;
             font-weight: 400;
-            line-height: 1;
         }
 
-        .bento-label {
+        .stat-label {
             font-size: 0.75rem;
             color: var(--text-3);
             margin-top: 4px;
         }
 
-        .bento-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .bento-text {
-            font-size: 0.875rem;
-            color: var(--text-2);
-            line-height: 1.6;
-        }
-
-        .bento-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--surface-2);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-
-        .bento-icon svg {
-            width: 18px;
-            height: 18px;
-            color: var(--accent);
-        }
-
-        /* About Card with Photo */
-        .about-card {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-
-        .about-photo {
-            width: 80px;
-            height: 80px;
-            border-radius: 12px;
-            object-fit: cover;
-            filter: grayscale(100%);
-            flex-shrink: 0;
-        }
-
-        .about-content {
-            flex: 1;
-        }
-
-        /* Section */
+        /* Sections */
         section {
             position: relative;
             z-index: 2;
-            padding: 80px 32px;
-            max-width: 1200px;
+            padding: 100px 32px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .section-header {
-            margin-bottom: 40px;
+            margin-bottom: 48px;
+        }
+
+        .section-header.center {
+            text-align: center;
         }
 
         .section-eyebrow {
@@ -393,85 +319,251 @@
             font-weight: 600;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--text-3);
+            color: var(--accent);
             margin-bottom: 12px;
         }
 
         .section-title {
             font-family: 'Newsreader', serif;
-            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            font-size: clamp(2rem, 4vw, 2.75rem);
             font-weight: 400;
             line-height: 1.2;
         }
 
-        /* Process */
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+        .section-subtitle {
+            font-size: 1.0625rem;
+            color: var(--text-2);
+            margin-top: 16px;
+            max-width: 600px;
         }
 
-        .process-card {
+        .section-header.center .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Problem Section */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .problem-text p {
+            font-size: 1.0625rem;
+            color: var(--text-2);
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .problem-text strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .solution-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .solution-item {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
+            border-radius: 12px;
             transition: all 0.3s ease;
         }
 
-        .process-card:hover {
+        .solution-item:hover {
             border-color: var(--text-3);
+            transform: translateX(4px);
         }
 
-        .process-number {
+        .solution-num {
             font-family: 'Newsreader', serif;
             font-size: 1.25rem;
             color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .solution-content h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .solution-content p {
+            font-size: 0.875rem;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--text-3);
+            transform: translateY(-4px);
+        }
+
+        .service-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--surface-2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .service-icon svg {
+            width: 22px;
+            height: 22px;
+            color: var(--accent);
+        }
+
+        .service-title {
+            font-size: 1.0625rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .service-desc {
+            font-size: 0.875rem;
+            color: var(--text-2);
+            line-height: 1.7;
+        }
+
+        /* Tools */
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .tool-tag {
+            padding: 10px 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-2);
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .testimonial-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+        }
+
+        .testimonial-text {
+            font-family: 'Newsreader', serif;
+            font-size: 1.125rem;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .testimonial-author {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .testimonial-role {
+            font-size: 0.8125rem;
+            color: var(--text-3);
+        }
+
+        /* FAQ */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .faq-question {
+            font-size: 1rem;
+            font-weight: 600;
             margin-bottom: 12px;
         }
 
-        .process-title {
+        .faq-answer {
             font-size: 0.9375rem;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .process-desc {
-            font-size: 0.8125rem;
             color: var(--text-2);
-            line-height: 1.5;
+            line-height: 1.7;
         }
 
         /* CTA */
         .cta-section {
             text-align: center;
-            padding: 80px 32px;
+            padding: 120px 32px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
         .cta-title {
             font-family: 'Newsreader', serif;
-            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 400;
             margin-bottom: 16px;
         }
 
         .cta-text {
-            font-size: 1rem;
+            font-size: 1.0625rem;
             color: var(--text-2);
-            max-width: 420px;
-            margin: 0 auto 28px;
+            max-width: 480px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
         }
 
         /* Footer */
         footer {
             position: relative;
             z-index: 2;
-            padding: 24px 32px;
-            border-top: 1px solid var(--border);
+            padding: 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
@@ -495,26 +587,22 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .bento-grid { grid-template-columns: repeat(2, 1fr); }
-            .bento-card.span-2 { grid-column: span 2; }
-            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .problem-grid { grid-template-columns: 1fr; gap: 40px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: 1fr; }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             nav { padding: 12px 16px; }
             .nav-links a:not(.nav-cta) { display: none; }
-            .hero { padding: 100px 20px 60px; }
-            .bento, section { padding-left: 16px; padding-right: 16px; }
-            .bento-grid, .process-grid { grid-template-columns: 1fr; }
-            .bento-card.span-2 { grid-column: span 1; }
+            .hero, section { padding-left: 20px; padding-right: 20px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .services-grid { grid-template-columns: 1fr; }
             .hero-cta { flex-direction: column; width: 100%; }
             .btn { width: 100%; justify-content: center; }
-            .about-card { flex-direction: column; }
-            .about-photo { width: 60px; height: 60px; }
             footer { 
                 flex-direction: column; 
-                gap: 16px; 
-                padding: 24px 16px;
+                gap: 16px;
                 text-align: center;
             }
         }
@@ -530,24 +618,25 @@
             <span class="nav-name">Carlos Mitchell</span>
         </a>
         <div class="nav-links">
+            <a href="#problem">Problem</a>
             <a href="#services">Services</a>
-            <a href="#process">Process</a>
+            <a href="#faq">FAQ</a>
             <a href="mailto:carlos@flowgrammatic.com" class="nav-cta">Get in Touch</a>
         </div>
     </nav>
 
     <div class="hero">
         <img src="carlos-mitchell.jpg" alt="Carlos Mitchell" class="hero-avatar">
-        <div class="hero-eyebrow">Available for projects</div>
+        <div class="hero-eyebrow">Available for Projects</div>
         <h1 class="hero-title">
-            I build systems that <em>eliminate</em> operational chaos
+            Your business runs on <em>duct tape</em> and spreadsheets. I fix that.
         </h1>
         <p class="hero-description">
-            16 years running marketing and scaling ecommerce taught me one thing: most businesses run on duct tape. I fix that with automation that actually works.
+            16 years in the trenches—running marketing, scaling ecommerce, drowning in the same operational chaos you're facing now. I learned to build systems that actually work. Now I build them for businesses like yours.
         </p>
         <div class="hero-cta">
             <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">
-                Start a conversation
+                Let's Talk
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
@@ -558,94 +647,215 @@
         </div>
     </div>
 
-    <div class="bento" id="services">
-        <div class="bento-grid">
-            <div class="bento-card">
-                <div class="bento-eyebrow">Experience</div>
-                <div class="bento-stat">16+</div>
-                <div class="bento-label">Years in operations</div>
+    <div class="stats">
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-value">16+</div>
+                <div class="stat-label">Years Experience</div>
             </div>
-            <div class="bento-card">
-                <div class="bento-eyebrow">Results</div>
-                <div class="bento-stat">73%</div>
-                <div class="bento-label">Avg cost reduction</div>
+            <div class="stat">
+                <div class="stat-value">73%</div>
+                <div class="stat-label">Avg Cost Reduction</div>
             </div>
-            <div class="bento-card span-2 about-card">
-                <img src="carlos-mitchell.jpg" alt="Carlos Mitchell" class="about-photo">
-                <div class="about-content">
-                    <div class="bento-eyebrow">About</div>
-                    <p class="bento-text">Director of Ecommerce by day, automation architect by night. I've processed thousands of orders, managed million-dollar campaigns, and learned exactly where businesses break. Now I fix those breaks for others.</p>
-                </div>
+            <div class="stat">
+                <div class="stat-value">10×</div>
+                <div class="stat-label">Faster Operations</div>
             </div>
-            <div class="bento-card">
-                <div class="bento-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                    </svg>
-                </div>
-                <h3 class="bento-title">Workflow Automation</h3>
-                <p class="bento-text">Lead routing, order processing, onboarding—processes that run themselves.</p>
-            </div>
-            <div class="bento-card">
-                <div class="bento-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
-                    </svg>
-                </div>
-                <h3 class="bento-title">AI Integration</h3>
-                <p class="bento-text">Smart support, auto-categorization, content generation that works.</p>
-            </div>
-            <div class="bento-card">
-                <div class="bento-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
-                    </svg>
-                </div>
-                <h3 class="bento-title">Data Systems</h3>
-                <p class="bento-text">Unified data, cross-channel sync, self-generating reports.</p>
-            </div>
-            <div class="bento-card">
-                <div class="bento-eyebrow">Speed</div>
-                <div class="bento-stat">10×</div>
-                <div class="bento-label">Faster operations</div>
+            <div class="stat">
+                <div class="stat-value">0</div>
+                <div class="stat-label">Babysitting Required</div>
             </div>
         </div>
     </div>
 
-    <section id="process">
-        <div class="section-header">
-            <div class="section-eyebrow">How I work</div>
-            <h2 class="section-title">From chaos to clarity</h2>
+    <section id="problem">
+        <div class="problem-grid">
+            <div class="problem-text">
+                <div class="section-eyebrow">The Problem</div>
+                <h2 class="section-title">You're not scaling. You're just hiring more people to do broken processes faster.</h2>
+                <p>
+                    Every new customer means more manual data entry. More email forwarding. More "let me check on that and get back to you." Your team spends 60% of their time on tasks a machine should handle.
+                </p>
+                <p>
+                    You've tried Zapier. Maybe a VA. Maybe three. The workflows break. Nobody knows how they work. And you're still the bottleneck.
+                </p>
+                <p>
+                    <strong>I've been there.</strong> Director of Ecommerce at a company processing thousands of orders daily. I built the systems that got us out of that chaos. Now I do it for others.
+                </p>
+            </div>
+            <div>
+                <div class="section-eyebrow">The Fix</div>
+                <ul class="solution-list">
+                    <li class="solution-item">
+                        <span class="solution-num">01</span>
+                        <div class="solution-content">
+                            <h3>Audit the Chaos</h3>
+                            <p>I map every process, every handoff, every "we've always done it this way." You'll see exactly where the hours go.</p>
+                        </div>
+                    </li>
+                    <li class="solution-item">
+                        <span class="solution-num">02</span>
+                        <div class="solution-content">
+                            <h3>Design the System</h3>
+                            <p>Not a band-aid. A real architecture—built on n8n, Make, or custom solutions—that handles exceptions and scales.</p>
+                        </div>
+                    </li>
+                    <li class="solution-item">
+                        <span class="solution-num">03</span>
+                        <div class="solution-content">
+                            <h3>Build It Right</h3>
+                            <p>Every workflow documented. Every edge case handled. Your team trained. No black boxes that break when I leave.</p>
+                        </div>
+                    </li>
+                    <li class="solution-item">
+                        <span class="solution-num">04</span>
+                        <div class="solution-content">
+                            <h3>Add Intelligence</h3>
+                            <p>Where it makes sense—AI for classification, routing, personalization. Not gimmicks. Practical automation that makes decisions.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="process-grid">
-            <div class="process-card">
-                <div class="process-number">01</div>
-                <h3 class="process-title">Audit</h3>
-                <p class="process-desc">Map every process and bottleneck. See where time disappears.</p>
+    </section>
+
+    <section id="services">
+        <div class="section-header center">
+            <div class="section-eyebrow">What I Build</div>
+            <h2 class="section-title">Systems that run while you sleep</h2>
+            <p class="section-subtitle">Every solution is custom-built for your specific chaos. Here's what I typically help with.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </div>
+                <h3 class="service-title">Workflow Automation</h3>
+                <p class="service-desc">Lead routing, order processing, invoice generation, customer onboarding—any process that follows rules becomes a machine that runs itself.</p>
             </div>
-            <div class="process-card">
-                <div class="process-number">02</div>
-                <h3 class="process-title">Design</h3>
-                <p class="process-desc">Build real architecture that handles edge cases and scales.</p>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                    </svg>
+                </div>
+                <h3 class="service-title">AI-Powered Operations</h3>
+                <p class="service-desc">Customer support that actually resolves issues. Content that writes itself. Data that categorizes automatically. Intelligence where it creates leverage.</p>
             </div>
-            <div class="process-card">
-                <div class="process-number">03</div>
-                <h3 class="process-title">Build</h3>
-                <p class="process-desc">Every workflow documented. Your team trained. No black boxes.</p>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375" />
+                    </svg>
+                </div>
+                <h3 class="service-title">Data Infrastructure</h3>
+                <p class="service-desc">Systems that sync inventory across 12 channels. Customer data unified in one place. Reports that generate themselves. Your single source of truth.</p>
             </div>
-            <div class="process-card">
-                <div class="process-number">04</div>
-                <h3 class="process-title">Optimize</h3>
-                <p class="process-desc">Add AI where it makes sense—classification, routing, decisions.</p>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                    </svg>
+                </div>
+                <h3 class="service-title">Ecommerce Systems</h3>
+                <p class="service-desc">16 years of ecommerce experience. Order management, fulfillment automation, customer segmentation, and revenue optimization at scale.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                    </svg>
+                </div>
+                <h3 class="service-title">CRM & Sales Automation</h3>
+                <p class="service-desc">Lead scoring, pipeline automation, follow-up sequences, deal routing. Your sales team focuses on selling, not data entry.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                    </svg>
+                </div>
+                <h3 class="service-title">Reporting & Analytics</h3>
+                <p class="service-desc">Dashboards that update themselves. KPIs that matter. Alerts when things go wrong. No more "can you pull that report?"</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header center">
+            <div class="section-eyebrow">Tools I Use</div>
+            <h2 class="section-title">Platform agnostic. Results focused.</h2>
+            <p class="section-subtitle">I pick the right tool for your problem, not the other way around.</p>
+        </div>
+        <div class="tools-grid">
+            <span class="tool-tag">n8n</span>
+            <span class="tool-tag">Make (Integromat)</span>
+            <span class="tool-tag">Zapier</span>
+            <span class="tool-tag">OpenAI / GPT</span>
+            <span class="tool-tag">Claude</span>
+            <span class="tool-tag">Airtable</span>
+            <span class="tool-tag">Notion</span>
+            <span class="tool-tag">Shopify</span>
+            <span class="tool-tag">HubSpot</span>
+            <span class="tool-tag">Slack</span>
+            <span class="tool-tag">Google Workspace</span>
+            <span class="tool-tag">Custom APIs</span>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-header center">
+            <div class="section-eyebrow">Results</div>
+            <h2 class="section-title">What clients say</h2>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"We were drowning in manual work before Carlos came in. He didn't just automate our processes—he rebuilt how we think about operations entirely. Our team went from firefighting to actually growing the business."</p>
+                <div class="testimonial-author">Operations Director</div>
+                <div class="testimonial-role">Mid-Market Ecommerce Brand</div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"I've worked with automation 'experts' before. Carlos is different. He actually understands business, not just tools. Our lead response time went from 4 hours to 4 minutes."</p>
+                <div class="testimonial-author">Founder</div>
+                <div class="testimonial-role">B2B SaaS Company</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="section-header center">
+            <div class="section-eyebrow">FAQ</div>
+            <h2 class="section-title">Common questions</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <h3 class="faq-question">How long does a typical project take?</h3>
+                <p class="faq-answer">Depends on complexity. A simple workflow automation might take a week. A full operational overhaul could be 6-8 weeks. I'll give you a realistic timeline after we talk through what you need.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Do you work with small businesses or just enterprise?</h3>
+                <p class="faq-answer">Both. If you have processes that waste time and money, I can help. That said, you need enough volume for automation to make sense—usually $500K+ in revenue or 5+ employees.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">What happens after you build the system?</h3>
+                <p class="faq-answer">You own it. I document everything, train your team, and make sure you're not dependent on me. That said, I offer ongoing support if you want it.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">How much does it cost?</h3>
+                <p class="faq-answer">Projects typically range from $5K-$50K depending on scope. The ROI usually pays for itself within 2-3 months through time savings and reduced errors. Let's talk about your specific situation.</p>
             </div>
         </div>
     </section>
 
     <section class="cta-section">
-        <h2 class="cta-title">Ready to stop patching?</h2>
-        <p class="cta-text">30 minutes to understand what's broken. If I can help, I'll tell you how.</p>
+        <h2 class="cta-title">Stop patching. Start building systems.</h2>
+        <p class="cta-text">
+            A 30-minute call to understand what's broken. If I can help, I'll tell you exactly how. If I can't, I'll tell you that too.
+        </p>
         <a href="mailto:carlos@flowgrammatic.com" class="btn btn-primary">
-            Book a call
+            Book a Call
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
@@ -653,7 +863,7 @@
     </section>
 
     <footer>
-        <span class="footer-text">© 2026 Carlos Mitchell</span>
+        <span class="footer-text">© 2026 Carlos Mitchell · FlowGrammatic</span>
         <div class="footer-links">
             <a href="https://www.linkedin.com/in/carlosmitchell/" target="_blank">LinkedIn</a>
             <a href="https://isparkzx.github.io/flowgrammatic/" target="_blank">FlowGrammatic</a>
@@ -671,10 +881,10 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.bento-card, .process-card').forEach((el, i) => {
+        document.querySelectorAll('.stat, .solution-item, .service-card, .testimonial-card, .faq-item, .tool-tag').forEach((el, i) => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
-            el.style.transition = `all 0.5s ease ${i * 0.05}s`;
+            el.style.transition = `all 0.5s ease ${(i % 6) * 0.05}s`;
             observer.observe(el);
         });
     </script>
